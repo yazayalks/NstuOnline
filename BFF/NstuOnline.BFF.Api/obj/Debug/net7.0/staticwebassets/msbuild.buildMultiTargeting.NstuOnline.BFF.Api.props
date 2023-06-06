@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\NstuOnline.BFF.Api.props" />
+</Project>

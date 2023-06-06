@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "SNR7U6rjlZ/ltqhQ/7JiUXpopZciYqk+bCVQZjFVLoA=",
+  "Source": "NstuOnline.BFF.Api",
+  "BasePath": "_content/NstuOnline.BFF.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
