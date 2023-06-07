@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\NstuOnline.MessageService.Api.props" />
+</Project>

@@ -11,8 +11,6 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddApplicationReferences(this IServiceCollection services,
         IConfiguration configuration)
     {
-        
-        
         services.Configure<Token>(configuration.GetSection("token"));
         
         services.AddScoped<ITokenService, TokenService>();

@@ -7,8 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.1"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\BFF\NstuOnline.BFF.Infrastructure\NstuOnline.BFF.Infrastructure.csproj" />
+      <ProjectReference Include="..\NstuOnline.MessageService.Infrastructure\NstuOnline.MessageService.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
