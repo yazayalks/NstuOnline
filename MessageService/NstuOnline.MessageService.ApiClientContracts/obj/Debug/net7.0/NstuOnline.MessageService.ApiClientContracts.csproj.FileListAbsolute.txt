@@ -1,0 +1,12 @@
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.ApiClientContracts\bin\Debug\net7.0\NstuOnline.MessageService.ApiClientContracts.deps.json
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.ApiClientContracts\bin\Debug\net7.0\NstuOnline.MessageService.ApiClientContracts.dll
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.ApiClientContracts\bin\Debug\net7.0\NstuOnline.MessageService.ApiClientContracts.pdb
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.ApiClientContracts\obj\Debug\net7.0\NstuOnline.MessageService.ApiClientContracts.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.ApiClientContracts\obj\Debug\net7.0\NstuOnline.MessageService.ApiClientContracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.ApiClientContracts\obj\Debug\net7.0\NstuOnline.MessageService.ApiClientContracts.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.ApiClientContracts\obj\Debug\net7.0\NstuOnline.MessageService.ApiClientContracts.AssemblyInfo.cs
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.ApiClientContracts\obj\Debug\net7.0\NstuOnline.MessageService.ApiClientContracts.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.ApiClientContracts\obj\Debug\net7.0\NstuOnline.MessageService.ApiClientContracts.dll
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.ApiClientContracts\obj\Debug\net7.0\refint\NstuOnline.MessageService.ApiClientContracts.dll
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.ApiClientContracts\obj\Debug\net7.0\NstuOnline.MessageService.ApiClientContracts.pdb
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.ApiClientContracts\obj\Debug\net7.0\ref\NstuOnline.MessageService.ApiClientContracts.dll
