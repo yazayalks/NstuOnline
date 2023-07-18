@@ -12,11 +12,14 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Contracts\" />
       <Folder Include="Entities\Enums\" />
       <Folder Include="Exceptions\" />
       <Folder Include="Extensions\" />
-      <Folder Include="Models\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Common\Common.Data\Common.Data.csproj" />
+      <ProjectReference Include="..\..\Common\Common.Models\Common.Models.csproj" />
     </ItemGroup>
 
 </Project>

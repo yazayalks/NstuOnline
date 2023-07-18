@@ -1,17 +1,22 @@
-
-
-
-
+using NstuOnline.MessageService.Application.Extensions;
 using NstuOnline.MessageService.Infrastructure.Extensions;
+using Serilog;
+using Serilog.Sinks.Grafana.Loki;
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.GrafanaLoki("http://loki:3100")
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 
-builder.Services
-    .AddInfrastructureReferences(builder.Configuration);
+builder.Host.UseSerilog();
 
-builder.Services.AddInfrastructureReferences(builder.Configuration);
+builder.Services
+    .AddInfrastructureReferences(builder.Configuration)
+    .AddApplicationReferences(builder.Configuration);
 
 builder.Services.AddControllers();
 
@@ -25,8 +30,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-
 
 app.UseHttpsRedirection();
 

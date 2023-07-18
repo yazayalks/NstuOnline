@@ -7,6 +7,7 @@ public sealed class MessageContext : DbContext
     public MessageContext(DbContextOptions<MessageContext> options)
         : base(options)
     {
+        
     }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)

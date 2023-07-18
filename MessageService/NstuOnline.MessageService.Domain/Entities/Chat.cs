@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.Data.Entities;
 
 namespace NstuOnline.MessageService.Domain.Entities;
 
-public class Chat
+public class Chat : EntityBase
 {
-    public Guid Id { get; set; }
-    
     public string Name { get; set; }
-    
+
     public byte ChatTypeId { get; set; }
-    
+
     public ChatType ChatType { get; set; }
-    
-    public ICollection<Message> Messages { get; set; } = new List<Message>();
-    
-    public ICollection<ChatUser> ChatUsers { get; set; } = new List<ChatUser>();
+
+    public ICollection<Message> Messages { get; set; }
+
+    public ICollection<ChatUser> ChatUsers { get; set; }
 }

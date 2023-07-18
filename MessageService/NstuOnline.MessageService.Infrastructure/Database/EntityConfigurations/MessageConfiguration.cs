@@ -17,9 +17,9 @@ public class MessageConfiguration : IEntityTypeConfiguration<Message>
             .Property(x => x.Text)
             .HasMaxLength(1000);
         
-        // builder
-        //     .HasMany(x => x.MessageAttachments)
-        //     .WithMany()
-        //     .UsingEntity<Message>();
+        builder
+            .HasOne(x => x.User)
+            .WithMany()
+            .HasForeignKey(x => x.UserId);
     }
 }

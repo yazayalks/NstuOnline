@@ -15,3 +15,9 @@ C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.I
 C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Infrastructure\obj\Debug\net7.0\NstuOnline.MessageService.Infrastructure.pdb
 C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Infrastructure\obj\Debug\net7.0\NstuOnline.MessageService.Infrastructure.genruntimeconfig.cache
 C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Infrastructure\obj\Debug\net7.0\ref\NstuOnline.MessageService.Infrastructure.dll
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Infrastructure\bin\Debug\net7.0\Common.Models.dll
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Infrastructure\bin\Debug\net7.0\Common.Models.pdb
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Infrastructure\bin\Debug\net7.0\Common.Data.dll
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Infrastructure\bin\Debug\net7.0\Common.Data.EntityFramework.dll
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Infrastructure\bin\Debug\net7.0\Common.Data.EntityFramework.pdb
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Infrastructure\bin\Debug\net7.0\Common.Data.pdb

@@ -107,6 +107,29 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Common.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Common.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Common.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Common.Data.dll": {}
+        }
+      },
+      "Common.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Common.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Common.Models.dll": {}
+        }
       }
     }
   },
@@ -451,10 +474,22 @@
         "swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "Common.Data/1.0.0": {
+      "type": "project",
+      "path": "../../Common/Common.Data/Common.Data.csproj",
+      "msbuildProject": "../../Common/Common.Data/Common.Data.csproj"
+    },
+    "Common.Models/1.0.0": {
+      "type": "project",
+      "path": "../../Common/Common.Models/Common.Models.csproj",
+      "msbuildProject": "../../Common/Common.Models/Common.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Common.Data >= 1.0.0",
+      "Common.Models >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.1",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
@@ -490,7 +525,14 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\User\\source\\repos\\NstuOnline\\Common\\Common.Data\\Common.Data.csproj": {
+              "projectPath": "C:\\Users\\User\\source\\repos\\NstuOnline\\Common\\Common.Data\\Common.Data.csproj"
+            },
+            "C:\\Users\\User\\source\\repos\\NstuOnline\\Common\\Common.Models\\Common.Models.csproj": {
+              "projectPath": "C:\\Users\\User\\source\\repos\\NstuOnline\\Common\\Common.Models\\Common.Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

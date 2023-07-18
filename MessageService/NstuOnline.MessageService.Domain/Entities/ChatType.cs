@@ -1,4 +1,5 @@
 ﻿using System;
+using NstuOnline.MessageService.Domain.Enums;
 
 namespace NstuOnline.MessageService.Domain.Entities;
 

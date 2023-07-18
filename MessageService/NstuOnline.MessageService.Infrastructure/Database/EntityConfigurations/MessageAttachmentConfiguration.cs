@@ -22,15 +22,5 @@ public class MessageAttachmentConfiguration : IEntityTypeConfiguration<MessageAt
             .HasOne(x => x.Attachment)
             .WithMany()
             .HasForeignKey(x => x.AttachmentId);
-
-        // builder
-        //     .HasOne(x => x.Message)
-        //     .WithMany(x => x.MessageAttachments)
-        //     .HasForeignKey(x => x.MessageId);
-        //
-        // builder
-        //     .HasOne(x => x.Attachment)
-        //     .WithMany(x => x.MessageAttachments)
-        //     .HasForeignKey(x => x.AttachmentId);
     }
 }

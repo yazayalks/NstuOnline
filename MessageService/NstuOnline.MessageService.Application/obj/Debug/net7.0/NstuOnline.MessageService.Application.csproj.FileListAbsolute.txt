@@ -10,3 +10,10 @@ C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.A
 C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Application\obj\Debug\net7.0\refint\NstuOnline.MessageService.Application.dll
 C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Application\obj\Debug\net7.0\NstuOnline.MessageService.Application.pdb
 C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Application\obj\Debug\net7.0\ref\NstuOnline.MessageService.Application.dll
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Application\bin\Debug\net7.0\Common.Models.dll
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Application\bin\Debug\net7.0\NstuOnline.MessageService.Domain.dll
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Application\bin\Debug\net7.0\Common.Models.pdb
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Application\bin\Debug\net7.0\NstuOnline.MessageService.Domain.pdb
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Application\obj\Debug\net7.0\NstuOnline.MessageService.Application.csproj.CopyComplete
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Application\bin\Debug\net7.0\Common.Data.dll
+C:\Users\User\source\repos\NstuOnline\MessageService\NstuOnline.MessageService.Application\bin\Debug\net7.0\Common.Data.pdb

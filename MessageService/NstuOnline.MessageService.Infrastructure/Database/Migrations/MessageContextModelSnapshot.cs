@@ -101,6 +101,26 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                         .IsUnique();
 
                     b.ToTable("chat_type", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (byte)1,
+                            Code = "dialog",
+                            Name = "Диалог"
+                        },
+                        new
+                        {
+                            Id = (byte)2,
+                            Code = "conversation",
+                            Name = "Беседа"
+                        },
+                        new
+                        {
+                            Id = (byte)3,
+                            Code = "system_conversation",
+                            Name = "Беседа группы"
+                        });
                 });
 
             modelBuilder.Entity("NstuOnline.MessageService.Domain.Entities.ChatUser", b =>
@@ -112,6 +132,8 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                         .HasColumnType("uuid");
 
                     b.HasKey("ChatId", "UserId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("chat_user", (string)null);
                 });
@@ -139,6 +161,8 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
 
                     b.HasIndex("ChatId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("message", (string)null);
                 });
 
@@ -160,6 +184,17 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                     b.HasIndex("AttachmentsId");
 
                     b.ToTable("message_attachment", (string)null);
+                });
+
+            modelBuilder.Entity("NstuOnline.MessageService.Domain.Entities.User", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("user", (string)null);
                 });
 
             modelBuilder.Entity("NstuOnline.MessageService.Domain.Entities.Attachment", b =>
@@ -192,7 +227,15 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("NstuOnline.MessageService.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Chat");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("NstuOnline.MessageService.Domain.Entities.Message", b =>
@@ -202,6 +245,14 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                         .HasForeignKey("ChatId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("NstuOnline.MessageService.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("NstuOnline.MessageService.Domain.Entities.MessageAttachment", b =>
