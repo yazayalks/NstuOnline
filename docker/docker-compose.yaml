@@ -2,24 +2,68 @@ version: "3"
 
 networks:
   loki:
-    
+
 services:
   loki:
-    image: grafana/loki:2.8.0
+    image: grafana/loki:latest
     ports:
       - "3100:3100"
+      - 7946
+      - 9095
+    volumes:
+      - ./shared/loki-config.yaml:/etc/loki/config.yaml
     command: -config.file=/etc/loki/local-config.yaml
     networks:
       - loki
-  
+      
   promtail:
-    image: grafana/promtail:2.8.0
+    image: grafana/promtail:latest
     volumes:
       - /var/log:/var/log
     command: -config.file=/etc/promtail/config.yml
     networks:
       - loki
-    
+  minio:
+    image: minio/minio
+    entrypoint:
+      - sh
+      - -euc
+      - |
+        mkdir -p /data/loki-data && \
+        mkdir -p /data/loki-ruler && \
+        minio server --console-address ":9001" /data
+    environment:
+      - MINIO_ROOT_USER=loki
+      - MINIO_ROOT_PASSWORD=supersecret
+      - MINIO_PROMETHEUS_AUTH_TYPE=public
+      - MINIO_UPDATE=off
+    ports:
+      - "9900:9000"
+      - "9901:9001"
+    volumes:
+      - ./.data/minio:/data
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
+      interval: 15s
+      timeout: 20s
+      retries: 5
+    networks:
+      - loki
+
+  grafana:
+    image: grafana/grafana:latest
+    volumes:
+      - ./shared/grafana-datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_FEATURE_TOGGLES_ENABLE=traceqlEditor
+    ports:
+      - "3000:3000"
+    networks:
+      - loki
+
   tempo:
     image: grafana/tempo:latest
     command: [ "-config.file=/etc/tempo.yaml" ]
@@ -56,19 +100,5 @@ services:
       - ./shared/prometheus.yaml:/etc/prometheus.yaml
     ports:
       - "9090:9090"
-    networks:
-      - loki
-
-  grafana:
-    image: grafana/grafana:9.4.3
-    volumes:
-      - ./shared/grafana-datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
-    environment:
-      - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-      - GF_AUTH_DISABLE_LOGIN_FORM=true
-      - GF_FEATURE_TOGGLES_ENABLE=traceqlEditor
-    ports:
-      - "3000:3000"
     networks:
       - loki
