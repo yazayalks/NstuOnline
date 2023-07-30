@@ -1,4 +1,4 @@
-﻿namespace NstuOnline.MessageService.Domain.Constants;
+﻿namespace NstuOnline.FileService.Domain.Constants;
 
 public static class Buckets
 {
