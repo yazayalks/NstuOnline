@@ -3,12 +3,11 @@ using NstuOnline.BFF.Application.Extensions;
 using NstuOnline.BFF.Infrastructure.Extensions;
 using Serilog;
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .CreateLogger();
-
-
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
 
 builder.Host.UseSerilog();
 

@@ -16,15 +16,17 @@
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.4" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.1" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="RestEase.HttpClientFactory" Version="1.6.4" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Configuration\" />
       <Folder Include="Enums\" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Common\Common.Models\Common.Models.csproj" />
+      <ProjectReference Include="..\..\MessageService\NstuOnline.MessageService.ApiClientContracts\NstuOnline.MessageService.ApiClientContracts.csproj" />
       <ProjectReference Include="..\NstuOnline.BFF.Domain\NstuOnline.BFF.Domain.csproj" />
     </ItemGroup>
 

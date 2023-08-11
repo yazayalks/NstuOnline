@@ -1,16 +1,14 @@
 using NstuOnline.MessageService.Application.Extensions;
+using NstuOnline.MessageService.Infrastructure.Database;
 using NstuOnline.MessageService.Infrastructure.Extensions;
 using Serilog;
 using Serilog.Sinks.Grafana.Loki;
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.GrafanaLoki("http://localhost:3100")
-    .CreateLogger();
-
 var builder = WebApplication.CreateBuilder(args);
 
-
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
 
 builder.Host.UseSerilog();
 
@@ -22,6 +20,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+await builder.Services.MigrateDatabase<MessageContext>();
 
 var app = builder.Build();
 

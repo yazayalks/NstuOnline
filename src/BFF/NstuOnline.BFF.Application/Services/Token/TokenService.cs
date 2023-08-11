@@ -7,23 +7,22 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NstuOnline.BFF.Application.Features.Auth.GetToken;
 using NstuOnline.BFF.Domain.Entity;
-using NstuOnline.BFF.Domain.Models;
 
-namespace NstuOnline.BFF.Application.Services
+namespace NstuOnline.BFF.Application.Services.Token
 {
     /// <inheritdoc cref="ITokenService" />
     public class TokenService : ITokenService
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
-        private readonly Token _token;
+        private readonly Domain.Models.Token _token;
         private readonly HttpContext _httpContext;
 
         /// <inheritdoc cref="ITokenService" />
         public TokenService(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
-            IOptions<Token> tokenOptions,
+            IOptions<Domain.Models.Token> tokenOptions,
             IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
@@ -89,10 +88,10 @@ namespace NstuOnline.BFF.Application.Services
                 Audience = _token.Audience,
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim("UserId", user.Id),
+                    //new Claim("UserId", user.Id),
                     //new Claim("FullName", $"{user.FirstName} {user.LastName}"),
-                    new Claim(ClaimTypes.Name, user.Email),
-                    new Claim(ClaimTypes.NameIdentifier, user.Email),
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id),
                     //  new Claim(ClaimTypes.Role, role)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(_token.Expiry),

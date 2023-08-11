@@ -120,6 +120,12 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                             Id = (byte)3,
                             Code = "system_conversation",
                             Name = "Беседа группы"
+                        },
+                        new
+                        {
+                            Id = (byte)4,
+                            Code = "favorite",
+                            Name = "Избранное"
                         });
                 });
 
@@ -150,6 +156,9 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid?>("ParentId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Text")
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
@@ -160,6 +169,8 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ChatId");
+
+                    b.HasIndex("ParentId");
 
                     b.HasIndex("UserId");
 
@@ -246,11 +257,17 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("NstuOnline.MessageService.Domain.Entities.Message", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
+
                     b.HasOne("NstuOnline.MessageService.Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Parent");
 
                     b.Navigation("User");
                 });
@@ -285,6 +302,11 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                     b.Navigation("ChatUsers");
 
                     b.Navigation("Messages");
+                });
+
+            modelBuilder.Entity("NstuOnline.MessageService.Domain.Entities.Message", b =>
+                {
+                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }

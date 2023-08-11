@@ -26,11 +26,21 @@ public static class ServiceCollectionExtensions
 
         return services;
     }
+    
+    public static async Task MigrateDatabase<TContext>(this IServiceCollection services)
+        where TContext : DbContext
+    {
+        var context = services.BuildServiceProvider().GetService<TContext>();
+        await context.Database.MigrateAsync();
+    }
 
     public static IServiceCollection AddRepositoryReferences(this IServiceCollection services)
     {
         return services
-            .AddScoped<IChatRepository, ChatRepository>();
+            .AddScoped<IChatRepository, ChatRepository>()
+            .AddScoped<IUserRepository, UserRepository>()
+            .AddScoped<IMessageRepository, MessageRepository>()
+            .AddScoped<IChatUserRepository, ChatUserRepository>();
     }
 
     public static IServiceCollection AddOpenTelemetryReferences(this IServiceCollection services, string serviceName)
@@ -46,7 +56,8 @@ public static class ServiceCollectionExtensions
                 .AddSqlClientInstrumentation()
                 .AddNpgsql()
                 .AddOtlpExporter()
-                .AddConsoleExporter());
+                //.AddConsoleExporter()
+            );
 
         return services;
     }

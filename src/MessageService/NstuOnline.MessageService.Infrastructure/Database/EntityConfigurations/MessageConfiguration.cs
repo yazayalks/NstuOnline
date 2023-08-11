@@ -21,5 +21,10 @@ public class MessageConfiguration : IEntityTypeConfiguration<Message>
             .HasOne(x => x.User)
             .WithMany()
             .HasForeignKey(x => x.UserId);
+        
+        builder
+            .HasOne(x => x.Parent)
+            .WithMany(x => x.Children)
+            .HasForeignKey(x => x.ParentId);
     }
 }

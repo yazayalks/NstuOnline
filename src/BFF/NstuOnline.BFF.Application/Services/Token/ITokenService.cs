@@ -1,6 +1,6 @@
 ﻿using NstuOnline.BFF.Application.Features.Auth.GetToken;
 
-namespace NstuOnline.BFF.Application.Services
+namespace NstuOnline.BFF.Application.Services.Token
 {
     /// <summary>
     ///     A collection of token related services

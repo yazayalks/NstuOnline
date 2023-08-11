@@ -14,6 +14,6 @@ public class ApplicationContext : IdentityDbContext<User>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseNpgsql(
-            "Host=host.docker.internal;Port=5433;Database=NstuOnlineIdentityDb;Username=postgres;Password=6969");
+            "User ID=postgres;Password=6969;Host=localhost;Port=5433;Database=NstuOnlineIdentityDb;");
     }
 }

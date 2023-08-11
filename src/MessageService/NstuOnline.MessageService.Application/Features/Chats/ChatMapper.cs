@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Common.Models;
+using NstuOnline.MessageService.Application.Features.Chats.Create;
 using NstuOnline.MessageService.Application.Features.Chats.Search;
 using NstuOnline.MessageService.Domain.Entities;
 using NstuOnline.MessageService.Domain.Models;
@@ -11,11 +12,16 @@ public class ChatMapper : Profile
     public ChatMapper()
     {
         MapSearch();
+        MapCreate();
+    }
+
+    private void MapCreate()
+    {
+        CreateMap<CreateChatRequest, Chat>();
     }
 
     private void MapSearch()
     {
-        CreateMap(typeof(PagedList<>), typeof(PagedList<>));
         CreateMap<SearchChatsRequest, SearchChatCriteria>();
         CreateMap<Chat, SearchChatsResponse>();
     }

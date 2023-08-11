@@ -44,6 +44,12 @@ public class ChatTypeConfiguration : IEntityTypeConfiguration<ChatType>
                 Id = (byte)ChatTypes.SystemСonversation,
                 Code = "system_conversation",
                 Name = "Беседа группы"
+            },
+            new()
+            {
+                Id = (byte)ChatTypes.Favorite,
+                Code = "favorite",
+                Name = "Избранное"
             }
         };
     }

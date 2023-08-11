@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using NstuOnline.BFF.Application.Services;
+using NstuOnline.BFF.Application.Services.Token;
 
 namespace NstuOnline.BFF.Application.Features.Auth.GetToken;
 

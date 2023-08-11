@@ -8,9 +8,9 @@ namespace NstuOnline.MessageService.Application.Features.Chats.Search;
 
 public record SearchChatsRequest : PagedRequest, IRequest<PagedList<SearchChatsResponse>>
 {
-    public Guid UserId { get; set; }
+    public Guid UserId { get; init; }
     
-    public byte? ChatTypeId { get; set; }
+    public byte? ChatTypeId { get; init; }
 }
 
 public class SearchChatsHandler : IRequestHandler<SearchChatsRequest, PagedList<SearchChatsResponse>>
