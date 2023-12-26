@@ -3,7 +3,7 @@ using Common.Models;
 
 namespace NstuOnline.BFF.Application.Services.Chat.Models;
 
-public record SearchChatsRequest : PagedRequest
+public record SearchChatRequest : PagedRequest
 {
     [JsonIgnore]
     public Guid UserId { get; set; }

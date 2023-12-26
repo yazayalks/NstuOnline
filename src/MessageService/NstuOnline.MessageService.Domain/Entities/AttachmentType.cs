@@ -1,12 +1,14 @@
 ﻿using System;
+using Common.Data.Entities;
 
 namespace NstuOnline.MessageService.Domain.Entities;
 
-public class AttachmentType
+public class AttachmentType : DictionaryEntity
 {
-    public byte Id { get; set; }
-    
     public string Code { get; set; }
-    
-    public string Name { get; set; }
+
+    public AttachmentType(byte id, string name, string code) : base(id, name)
+    {
+        Code = code;
+    }
 }

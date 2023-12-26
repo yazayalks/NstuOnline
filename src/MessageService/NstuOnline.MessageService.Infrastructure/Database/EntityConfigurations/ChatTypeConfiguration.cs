@@ -10,7 +10,7 @@ public class ChatTypeConfiguration : IEntityTypeConfiguration<ChatType>
     public void Configure(EntityTypeBuilder<ChatType> builder)
     {
         builder.ToTable("chat_type");
-        
+
         builder
             .Property(x => x.Name)
             .IsRequired()
@@ -27,30 +27,10 @@ public class ChatTypeConfiguration : IEntityTypeConfiguration<ChatType>
     {
         return new List<ChatType>
         {
-            new()
-            {
-                Id = (byte)ChatTypes.Dialog,
-                Code = "dialog",
-                Name = "Диалог"
-            },
-            new()
-            {
-                Id = (byte)ChatTypes.Сonversation,
-                Code = "conversation",
-                Name = "Беседа"
-            },
-            new()
-            {
-                Id = (byte)ChatTypes.SystemСonversation,
-                Code = "system_conversation",
-                Name = "Беседа группы"
-            },
-            new()
-            {
-                Id = (byte)ChatTypes.Favorite,
-                Code = "favorite",
-                Name = "Избранное"
-            }
+            new((byte)ChatTypes.Dialog, "dialog", "Диалог"),
+            new((byte)ChatTypes.Сonversation, "conversation", "Беседа"),
+            new((byte)ChatTypes.SystemСonversation, "system_conversation", "Беседа группы"),
+            new((byte)ChatTypes.Favorite, "favorite", "Избранное")
         };
     }
 }

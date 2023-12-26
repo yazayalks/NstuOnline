@@ -11,6 +11,6 @@ public interface IChatApiClient
         CancellationToken cancellationToken = default);
 
     [Post("v1/chats/search")]
-    Task<PagedList<SearchChatsResponse>> Search([Body] SearchChatsRequest request,
+    Task<PagedList<SearchChatResponse>> Search([Body] SearchChatRequest request,
         CancellationToken cancellationToken = default);
 }

@@ -10,8 +10,8 @@ public class MessageMapper : Profile
 {
     public MessageMapper()
     {
-        MapCreate();
         MapSearch();
+        MapCreate();
     }
 
     private void MapSearch()

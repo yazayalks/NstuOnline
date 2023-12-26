@@ -1,10 +1,11 @@
 ﻿using Common.Models;
-using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NstuOnline.BFF.Application.Configuration;
-using NstuOnline.BFF.Application.Services;
+using NstuOnline.BFF.Application.Services.AttachmentType;
 using NstuOnline.BFF.Application.Services.Chat;
+using NstuOnline.BFF.Application.Services.ChatType;
+using NstuOnline.BFF.Application.Services.Message;
 using NstuOnline.BFF.Application.Services.Token;
 using NstuOnline.BFF.Domain.Models;
 using NstuOnline.MessageService.ApiClientContracts.ApiClients;
@@ -21,9 +22,12 @@ public static class ServiceCollectionExtensions
 
         services.AddApiClient(configuration);
 
-        services.AddScoped<ITokenService, TokenService>();
-        services.AddScoped<IChatService, ChatService>();
-
+        services
+            .AddScoped<ITokenService, TokenService>()
+            .AddScoped<IChatService, ChatService>()
+            .AddScoped<IMessageService, Services.Message.MessageService>()
+            .AddScoped<IAttachmentTypeService, AttachmentTypeService>()
+            .AddScoped<IChatTypeService, ChatTypeService>();
 
         return services;
     }
@@ -44,6 +48,9 @@ public static class ServiceCollectionExtensions
         ApiClientConfiguration configuration)
     {
         services.AddRestEaseClient<IChatApiClient>(configuration.Url);
+        services.AddRestEaseClient<IMessageApiClient>(configuration.Url); 
+        services.AddRestEaseClient<IAttachmentTypeApiClient>(configuration.Url);
+        services.AddRestEaseClient<IChatTypeApiClient>(configuration.Url);
 
         return services;
     }

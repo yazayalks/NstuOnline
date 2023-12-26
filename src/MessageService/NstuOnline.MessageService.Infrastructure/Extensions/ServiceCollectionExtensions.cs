@@ -40,7 +40,10 @@ public static class ServiceCollectionExtensions
             .AddScoped<IChatRepository, ChatRepository>()
             .AddScoped<IUserRepository, UserRepository>()
             .AddScoped<IMessageRepository, MessageRepository>()
-            .AddScoped<IChatUserRepository, ChatUserRepository>();
+            .AddScoped<IChatUserRepository, ChatUserRepository>()
+            .AddScoped<IAttachmentRepository, AttachmentRepository>()
+            .AddScoped<IAttachmentTypeRepository, AttachmentTypeRepository>()
+            .AddScoped<IChatTypeRepository, ChatTypeRepository>();
     }
 
     public static IServiceCollection AddOpenTelemetryReferences(this IServiceCollection services, string serviceName)

@@ -24,12 +24,12 @@ public class ChatService : IChatService
         return await _chatApiClient.Create(apiRequest, cancellationToken);
     }
 
-    public async Task<PagedList<SearchChatsResponse>> Search(SearchChatsRequest request, CancellationToken cancellationToken)
+    public async Task<PagedList<SearchChatResponse>> Search(SearchChatRequest request, CancellationToken cancellationToken)
     {
-        var apiRequest = _mapper.Map<ApiModel.SearchChatsRequest>(request);
+        var apiRequest = _mapper.Map<ApiModel.SearchChatRequest>(request);
 
         var chats = await _chatApiClient.Search(apiRequest, cancellationToken);
 
-        return _mapper.Map<PagedList<SearchChatsResponse>>(chats);
+        return _mapper.Map<PagedList<SearchChatResponse>>(chats);
     }
 }

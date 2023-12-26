@@ -10,6 +10,14 @@ datasources:
   isDefault: false
   version: 1
   editable: false
+  jsonData:
+    derivedFields:
+      - datasourceName: Tempo
+        matcherRegex: >
+          "TraceId":"(\w+)"
+        name: TraceID
+        url: "$${__value.raw}"
+        datasourceUid: tempo
 - name: Prometheus
   type: prometheus
   uid: prometheus

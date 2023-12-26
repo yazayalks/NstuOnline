@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using NstuOnline.MessageService.Application.Features.Attachments.Create;
 
 namespace NstuOnline.MessageService.Api.Controllers;
 
@@ -12,5 +13,11 @@ public class AttachmentController : ControllerBase
     public AttachmentController(IMediator mediator)
     {
         _mediator = mediator;
+    }
+    
+    [HttpPost]
+    public Task<Guid> Create(CreateAttachmentRequest request, CancellationToken cancellationToken)
+    {
+        return _mediator.Send(request, cancellationToken);
     }
 }

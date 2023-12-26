@@ -28,7 +28,7 @@ public class ChatController : ControllerBase
     }
     
     [HttpPost("search")]
-    public async Task<PagedList<SearchChatsResponse>> Search(SearchChatsRequest request, CancellationToken cancellationToken)
+    public async Task<PagedList<SearchChatResponse>> Search(SearchChatRequest request, CancellationToken cancellationToken)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         request.UserId = Guid.Parse(userId!);

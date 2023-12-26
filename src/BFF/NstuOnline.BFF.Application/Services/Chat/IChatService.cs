@@ -7,5 +7,5 @@ public interface IChatService
 {
     Task<Guid> Create(CreateChatRequest request, CancellationToken cancellationToken);
 
-    Task<PagedList<SearchChatsResponse>> Search(SearchChatsRequest request, CancellationToken cancellationToken);
+    Task<PagedList<SearchChatResponse>> Search(SearchChatRequest request, CancellationToken cancellationToken);
 }

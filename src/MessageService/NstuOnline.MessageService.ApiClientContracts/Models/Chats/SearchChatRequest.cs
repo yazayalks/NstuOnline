@@ -2,7 +2,7 @@
 
 namespace NstuOnline.MessageService.ApiClientContracts.Models.Chats;
 
-public record SearchChatsRequest : PagedRequest
+public record SearchChatRequest : PagedRequest
 {
     public Guid UserId { get; set; }
     

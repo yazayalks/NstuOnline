@@ -8,11 +8,11 @@ namespace NstuOnline.MessageService.Application.Features.Messages.Search;
 
 public record SearchMessageRequest : PagedRequest, IRequest<PagedList<SearchMessageResponse>>
 {
-    public string Keyword { get; set; }
+    public string Keyword { get; init; }
     
-    public Guid UserId { get; set; }
+    public Guid UserId { get; init; }
     
-    public Guid ChatId { get; set; }
+    public Guid ChatId { get; init; }
 }
 
 public class SearchMessageHandler : IRequestHandler<SearchMessageRequest, PagedList<SearchMessageResponse>>

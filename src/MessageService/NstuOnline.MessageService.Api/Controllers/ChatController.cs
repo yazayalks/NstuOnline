@@ -24,7 +24,7 @@ public class ChatController : ControllerBase
     }
     
     [HttpPost("search")]
-    public Task<PagedList<SearchChatsResponse>> Search(SearchChatsRequest request, CancellationToken cancellationToken)
+    public Task<PagedList<SearchChatResponse>> Search(SearchChatsRequest request, CancellationToken cancellationToken)
     {
         return _mediator.Send(request, cancellationToken);
     }
