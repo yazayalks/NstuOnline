@@ -16,6 +16,7 @@ public class ChatMapper : Profile
     {
         CreateMap<SearchChatRequest, ApiModel.SearchChatRequest>();
         CreateMap<ApiModel.SearchChatResponse, SearchChatResponse>();
+        CreateMap<ApiModel.SearchChatLastMessageResponse, SearchChatLastMessageResponse>();
     }
 
     private void MapCreate()

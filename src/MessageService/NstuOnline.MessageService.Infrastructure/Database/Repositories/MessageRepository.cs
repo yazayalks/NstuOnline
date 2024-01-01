@@ -18,7 +18,7 @@ public class MessageRepository : RepositoryBase<Message, Guid>, IMessageReposito
     {
         var query = EntitiesDbSet
             .AsNoTracking()
-            .Where(x => x.UserId == criteria.UserId && x.ChatId == criteria.ChatId);
+            .Where(x => x.ChatId == criteria.ChatId);
 
         if (!string.IsNullOrWhiteSpace(criteria.Keyword))
         {

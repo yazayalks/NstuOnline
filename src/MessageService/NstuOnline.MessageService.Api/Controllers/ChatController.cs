@@ -17,14 +17,18 @@ public class ChatController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost]
-    public Task<Guid> Create(CreateChatRequest request, CancellationToken cancellationToken)
+    [HttpPost("search")]
+    public Task<PagedList<SearchChatResponse>> Search(
+        SearchChatsRequest request,
+        CancellationToken cancellationToken)
     {
         return _mediator.Send(request, cancellationToken);
     }
-    
-    [HttpPost("search")]
-    public Task<PagedList<SearchChatResponse>> Search(SearchChatsRequest request, CancellationToken cancellationToken)
+
+    [HttpPost]
+    public Task<Guid> Create(
+        CreateChatRequest request,
+        CancellationToken cancellationToken)
     {
         return _mediator.Send(request, cancellationToken);
     }

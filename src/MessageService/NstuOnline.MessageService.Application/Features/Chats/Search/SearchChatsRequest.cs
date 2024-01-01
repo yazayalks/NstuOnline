@@ -49,7 +49,8 @@ public class SearchChatsHandler : IRequestHandler<SearchChatsRequest, PagedList<
         
         var lastMessages = await _messageRepository.SimplifySearch(searchMessageCriteria, cancellationToken);
         
-        var lastMessagesByChatId = lastMessages.Items?.ToDictionary(m => m.ChatId, m => m) ?? new Dictionary<Guid, Message>();
+        var lastMessagesByChatId = lastMessages.Items?
+            .ToDictionary(m => m.ChatId, m => m) ?? new Dictionary<Guid, Message>();
         
         var chatResponses = chats.Items.Select(chat => 
         {
