@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NstuOnline.MessageService.Domain.Entities;
+using NstuOnline.MessageService.Domain.Enums;
 
 namespace NstuOnline.MessageService.Infrastructure.Database.EntityConfigurations;
 
@@ -21,5 +22,17 @@ public class AttachmentTypeConfiguration : IEntityTypeConfiguration<AttachmentTy
         builder
             .HasIndex(x => x.Code)
             .IsUnique();
+        
+        builder.HasData(GetDefaultAttachmentTypes());
+    }
+
+    private List<AttachmentType> GetDefaultAttachmentTypes()
+    {
+        return new List<AttachmentType>
+        {
+            new((byte)AttachmentTypes.Document, "document", "Документ"),
+            new((byte)AttachmentTypes.Photo, "photo", "Фото"),
+            new((byte)AttachmentTypes.Voice, "voice", "Голосовое")
+        };
     }
 }

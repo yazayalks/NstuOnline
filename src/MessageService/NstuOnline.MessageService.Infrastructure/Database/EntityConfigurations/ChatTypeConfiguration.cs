@@ -29,8 +29,10 @@ public class ChatTypeConfiguration : IEntityTypeConfiguration<ChatType>
         {
             new((byte)ChatTypes.Dialog, "dialog", "Диалог"),
             new((byte)ChatTypes.Сonversation, "conversation", "Беседа"),
-            new((byte)ChatTypes.SystemСonversation, "system_conversation", "Беседа группы"),
-            new((byte)ChatTypes.Favorite, "favorite", "Избранное")
+            new((byte)ChatTypes.GroupСonversation, "group_conversation", "Беседа группы"),
+            new((byte)ChatTypes.Favorite, "favorite", "Избранное"),
+            new((byte)ChatTypes.SubjectСonversation, "subject_conversation", "Беседа по дисциплине"),
+            new((byte)ChatTypes.WorkDialog, "work_dialog", "Диалог по работе"),
         };
     }
 }

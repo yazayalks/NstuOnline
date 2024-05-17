@@ -4,7 +4,7 @@ using Common.Data.Entities;
 
 namespace NstuOnline.MessageService.Domain.Entities;
 
-public class Chat : EntityBase
+public class Chat : ArchivableEntity
 {
     public string Name { get; set; }
 
@@ -15,4 +15,9 @@ public class Chat : EntityBase
     public ICollection<Message> Messages { get; set; }
 
     public ICollection<ChatUser> ChatUsers { get; set; }
+    
+    /// <summary>
+    /// В рамках чего создан чат (дисциплина, беседа группы, лабораторная работа)
+    /// </summary>
+    public Guid? ParentId { get; set; } 
 }

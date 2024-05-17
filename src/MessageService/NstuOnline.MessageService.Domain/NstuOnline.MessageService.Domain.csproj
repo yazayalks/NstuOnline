@@ -12,10 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Entities\Enums\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\..\Common\Common.Data\Common.Data.csproj" />
       <ProjectReference Include="..\..\Common\Common.Models\Common.Models.csproj" />
     </ItemGroup>

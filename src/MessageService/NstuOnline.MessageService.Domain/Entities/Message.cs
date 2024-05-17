@@ -18,6 +18,18 @@ public class Message : EntityBase
     public string Text { get; set; }
 
     public DateTime CreateDate { get; set; }
+    
+    public DateTime? UpdatedDate { get; set; }
+    
+    public bool IsDeleted { get; set; }
+    
+    public byte MessageStatusId { get; set; }
+
+    public MessageStatus MessageStatus { get; set; }
+    
+    public byte MessageTypeId { get; set; }
+
+    public MessageType MessageType { get; set; }
 
     //public ICollection<MessageAttachment> MessageAttachments { get; set; }
 

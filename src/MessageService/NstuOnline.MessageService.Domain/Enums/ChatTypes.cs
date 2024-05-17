@@ -4,6 +4,8 @@ public enum ChatTypes : byte
 {
     Dialog = 1,
     Сonversation = 2,
-    SystemСonversation = 3,
-    Favorite = 4
+    GroupСonversation = 3,
+    Favorite = 4,
+    SubjectСonversation = 5,
+    WorkDialog = 6
 }
