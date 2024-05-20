@@ -55,25 +55,73 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.FileService.Infr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.FileService.ApiClientContracts", "FileService\NstuOnline.FileService.ApiClientContracts\NstuOnline.FileService.ApiClientContracts.csproj", "{9DA50BD7-160C-4A51-9CB7-3D0454AB3512}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EducationalStructure", "EducationalStructure", "{C32AEEB6-7EBD-4835-BEF3-59AD24F30B37}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EducationalStructureService", "EducationalStructureService", "{C32AEEB6-7EBD-4835-BEF3-59AD24F30B37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.EducationalStructure.Api", "EducationalStructure\NstuOnline.EducationalStructure.Api\NstuOnline.EducationalStructure.Api.csproj", "{7981B2BE-4B1A-4A74-931D-E0D298D95AEA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.EducationalStructureService.Api", "EducationalStructure\NstuOnline.EducationalStructureService.Api\NstuOnline.EducationalStructureService.Api.csproj", "{7981B2BE-4B1A-4A74-931D-E0D298D95AEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.EducationalStructure.Application", "EducationalStructure\NstuOnline.EducationalStructure.Application\NstuOnline.EducationalStructure.Application.csproj", "{6E8ACF41-AB6B-4F9A-AA4B-13453735FBA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.EducationalStructureService.Application", "EducationalStructure\NstuOnline.EducationalStructureService.Application\NstuOnline.EducationalStructureService.Application.csproj", "{6E8ACF41-AB6B-4F9A-AA4B-13453735FBA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.EducationalStructure.Domain", "EducationalStructure\NstuOnline.EducationalStructure.Domain\NstuOnline.EducationalStructure.Domain.csproj", "{7F79800D-4351-48B7-8376-F13C27334B5D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.EducationalStructureService.Domain", "EducationalStructure\NstuOnline.EducationalStructureService.Domain\NstuOnline.EducationalStructureService.Domain.csproj", "{7F79800D-4351-48B7-8376-F13C27334B5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.EducationalStructure.Infrastructure", "EducationalStructure\NstuOnline.EducationalStructure.Infrastructure\NstuOnline.EducationalStructure.Infrastructure.csproj", "{958AE6C1-95F6-48E1-A781-42445C8D3B10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.EducationalStructureService.Infrastructure", "EducationalStructure\NstuOnline.EducationalStructureService.Infrastructure\NstuOnline.EducationalStructureService.Infrastructure.csproj", "{958AE6C1-95F6-48E1-A781-42445C8D3B10}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkCompletion", "WorkCompletion", "{61252FCE-9AF3-4BD0-86B4-46794A689ECE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkCompletionService", "WorkCompletionService", "{61252FCE-9AF3-4BD0-86B4-46794A689ECE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.WorkCompletion.Api", "WorkCompletion\NstuOnline.WorkCompletion.Api\NstuOnline.WorkCompletion.Api.csproj", "{F52FD1E3-0506-4C10-A9FA-46F3CBAE3953}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.WorkCompletionService.Api", "WorkCompletion\NstuOnline.WorkCompletionService.Api\NstuOnline.WorkCompletionService.Api.csproj", "{F52FD1E3-0506-4C10-A9FA-46F3CBAE3953}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.WorkCompletion.Application", "WorkCompletion\NstuOnline.WorkCompletion.Application\NstuOnline.WorkCompletion.Application.csproj", "{F7E79CEE-DE9C-4A46-A193-C9FF7E6D9DFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.WorkCompletionService.Application", "WorkCompletion\NstuOnline.WorkCompletionService.Application\NstuOnline.WorkCompletionService.Application.csproj", "{F7E79CEE-DE9C-4A46-A193-C9FF7E6D9DFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.WorkCompletion.Domain", "WorkCompletion\NstuOnline.WorkCompletion.Domain\NstuOnline.WorkCompletion.Domain.csproj", "{75309906-76E4-446A-A04C-4B4DA068195C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.WorkCompletionService.Domain", "WorkCompletion\NstuOnline.WorkCompletionService.Domain\NstuOnline.WorkCompletionService.Domain.csproj", "{75309906-76E4-446A-A04C-4B4DA068195C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.WorkCompletion.Infrastructure", "WorkCompletion\NstuOnline.WorkCompletion.Infrastructure\NstuOnline.WorkCompletion.Infrastructure.csproj", "{74B85308-0928-4587-83A9-4BE825CD79FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.WorkCompletionService.Infrastructure", "WorkCompletion\NstuOnline.WorkCompletionService.Infrastructure\NstuOnline.WorkCompletionService.Infrastructure.csproj", "{74B85308-0928-4587-83A9-4BE825CD79FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PortfolioService", "PortfolioService", "{8784B2F2-98CF-4A17-92B2-94D371977B31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.PortfolioService.Api", "PortfolioService\NstuOnline.PortfolioService.Api\NstuOnline.PortfolioService.Api.csproj", "{210B9DFF-CA64-4719-9923-F29317E7BAFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.PortfolioService.ApiClientContracts", "PortfolioService\NstuOnline.PortfolioService.ApiClientContracts\NstuOnline.PortfolioService.ApiClientContracts.csproj", "{322E9E13-CB46-4B0E-98D1-3CFEE2F51662}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.PortfolioService.Application", "PortfolioService\NstuOnline.PortfolioService.Application\NstuOnline.PortfolioService.Application.csproj", "{C147B506-922C-43E3-9B88-A91D173469DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.PortfolioService.Domain", "PortfolioService\NstuOnline.PortfolioService.Domain\NstuOnline.PortfolioService.Domain.csproj", "{BDCF622F-FEFA-471B-8673-0716084C435B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.PortfolioService.Infrastructure", "PortfolioService\NstuOnline.PortfolioService.Infrastructure\NstuOnline.PortfolioService.Infrastructure.csproj", "{00F78E62-DD2A-4CE7-A283-C3E92455925C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WallService", "WallService", "{0179581A-9D0C-4D15-A140-3C8A20BC8A4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AlbumService", "AlbumService", "{C6DF5032-8440-4EE7-A779-49A2FADAF0B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.WallService.Api", "WallService\NstuOnline.WallService.Api\NstuOnline.WallService.Api.csproj", "{2F23C9BC-74A4-4BA7-A23F-EAF84728A66A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.AlbumService.Api", "AlbumService\NstuOnline.AlbumService.Api\NstuOnline.AlbumService.Api.csproj", "{23FAC14B-F7A1-44F2-AFDE-D511D343BBB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.AlbumService.ApiClientContracts", "AlbumService\NstuOnline.AlbumService.ApiClientContracts\NstuOnline.AlbumService.ApiClientContracts.csproj", "{F0199FA2-4D5B-4CD3-B7E7-61A9104E1A53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.AlbumService.Application", "AlbumService\NstuOnline.AlbumService.Application\NstuOnline.AlbumService.Application.csproj", "{64D107C7-349C-4CAF-8997-0B8D871CE81C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.AlbumService.Domain", "AlbumService\NstuOnline.AlbumService.Domain\NstuOnline.AlbumService.Domain.csproj", "{AFF003E4-5023-46C6-8DF4-95F5C0607950}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.AlbumService.Infrastructure", "AlbumService\NstuOnline.AlbumService.Infrastructure\NstuOnline.AlbumService.Infrastructure.csproj", "{3DE96810-2266-4288-9FE3-94732F38AA16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.WallService.ApiClientContracts", "WallService\NstuOnline.WallService.ApiClientContracts\NstuOnline.WallService.ApiClientContracts.csproj", "{750F026D-8326-4E2B-94CD-00A2FAB4B77C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.WallService.Application", "WallService\NstuOnline.WallService.Application\NstuOnline.WallService.Application.csproj", "{8E102FD1-22F7-48D7-B39F-76ECD4742F1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.WallService.Domain", "WallService\NstuOnline.WallService.Domain\NstuOnline.WallService.Domain.csproj", "{7DE5ADE8-E85E-4C0B-90DE-C912867FD2BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.WallService.Infrastructure", "WallService\NstuOnline.WallService.Infrastructure\NstuOnline.WallService.Infrastructure.csproj", "{63E7DD35-77AC-47B9-8483-0A36E0DFC4FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventService", "EventService", "{C38A5675-4EFC-46A6-855D-655C0AA2DD09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.EventService.Api", "EventService\NstuOnline.EventService.Api\NstuOnline.EventService.Api.csproj", "{69A405FF-1577-43DB-96BF-772493E3836F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.EventService.ApiClientContracts", "EventService\NstuOnline.EventService.ApiClientContracts\NstuOnline.EventService.ApiClientContracts.csproj", "{B248269D-5EC9-42A4-93B8-8586F5EC112F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.EventService.Application", "EventService\NstuOnline.EventService.Application\NstuOnline.EventService.Application.csproj", "{237DD776-9521-498F-9ABA-F45C17BA7757}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.EventService.Domain", "EventService\NstuOnline.EventService.Domain\NstuOnline.EventService.Domain.csproj", "{932E4A1D-69E3-47C8-BA3A-74708A21254B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NstuOnline.EventService.Infrastructure", "EventService\NstuOnline.EventService.Infrastructure\NstuOnline.EventService.Infrastructure.csproj", "{DC86A18E-FDF5-4DC1-827F-C132C84BD8AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -189,6 +237,86 @@ Global
 		{74B85308-0928-4587-83A9-4BE825CD79FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74B85308-0928-4587-83A9-4BE825CD79FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74B85308-0928-4587-83A9-4BE825CD79FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{210B9DFF-CA64-4719-9923-F29317E7BAFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{210B9DFF-CA64-4719-9923-F29317E7BAFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{210B9DFF-CA64-4719-9923-F29317E7BAFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{210B9DFF-CA64-4719-9923-F29317E7BAFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{322E9E13-CB46-4B0E-98D1-3CFEE2F51662}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{322E9E13-CB46-4B0E-98D1-3CFEE2F51662}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{322E9E13-CB46-4B0E-98D1-3CFEE2F51662}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{322E9E13-CB46-4B0E-98D1-3CFEE2F51662}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C147B506-922C-43E3-9B88-A91D173469DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C147B506-922C-43E3-9B88-A91D173469DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C147B506-922C-43E3-9B88-A91D173469DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C147B506-922C-43E3-9B88-A91D173469DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDCF622F-FEFA-471B-8673-0716084C435B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDCF622F-FEFA-471B-8673-0716084C435B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDCF622F-FEFA-471B-8673-0716084C435B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDCF622F-FEFA-471B-8673-0716084C435B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00F78E62-DD2A-4CE7-A283-C3E92455925C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00F78E62-DD2A-4CE7-A283-C3E92455925C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00F78E62-DD2A-4CE7-A283-C3E92455925C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00F78E62-DD2A-4CE7-A283-C3E92455925C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F23C9BC-74A4-4BA7-A23F-EAF84728A66A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F23C9BC-74A4-4BA7-A23F-EAF84728A66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F23C9BC-74A4-4BA7-A23F-EAF84728A66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F23C9BC-74A4-4BA7-A23F-EAF84728A66A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23FAC14B-F7A1-44F2-AFDE-D511D343BBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23FAC14B-F7A1-44F2-AFDE-D511D343BBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23FAC14B-F7A1-44F2-AFDE-D511D343BBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23FAC14B-F7A1-44F2-AFDE-D511D343BBB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0199FA2-4D5B-4CD3-B7E7-61A9104E1A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0199FA2-4D5B-4CD3-B7E7-61A9104E1A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0199FA2-4D5B-4CD3-B7E7-61A9104E1A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0199FA2-4D5B-4CD3-B7E7-61A9104E1A53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64D107C7-349C-4CAF-8997-0B8D871CE81C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64D107C7-349C-4CAF-8997-0B8D871CE81C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64D107C7-349C-4CAF-8997-0B8D871CE81C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64D107C7-349C-4CAF-8997-0B8D871CE81C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF003E4-5023-46C6-8DF4-95F5C0607950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF003E4-5023-46C6-8DF4-95F5C0607950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF003E4-5023-46C6-8DF4-95F5C0607950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF003E4-5023-46C6-8DF4-95F5C0607950}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DE96810-2266-4288-9FE3-94732F38AA16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DE96810-2266-4288-9FE3-94732F38AA16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DE96810-2266-4288-9FE3-94732F38AA16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DE96810-2266-4288-9FE3-94732F38AA16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{750F026D-8326-4E2B-94CD-00A2FAB4B77C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{750F026D-8326-4E2B-94CD-00A2FAB4B77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{750F026D-8326-4E2B-94CD-00A2FAB4B77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{750F026D-8326-4E2B-94CD-00A2FAB4B77C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E102FD1-22F7-48D7-B39F-76ECD4742F1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E102FD1-22F7-48D7-B39F-76ECD4742F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E102FD1-22F7-48D7-B39F-76ECD4742F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E102FD1-22F7-48D7-B39F-76ECD4742F1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DE5ADE8-E85E-4C0B-90DE-C912867FD2BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE5ADE8-E85E-4C0B-90DE-C912867FD2BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE5ADE8-E85E-4C0B-90DE-C912867FD2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE5ADE8-E85E-4C0B-90DE-C912867FD2BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63E7DD35-77AC-47B9-8483-0A36E0DFC4FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63E7DD35-77AC-47B9-8483-0A36E0DFC4FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63E7DD35-77AC-47B9-8483-0A36E0DFC4FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63E7DD35-77AC-47B9-8483-0A36E0DFC4FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69A405FF-1577-43DB-96BF-772493E3836F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69A405FF-1577-43DB-96BF-772493E3836F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69A405FF-1577-43DB-96BF-772493E3836F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69A405FF-1577-43DB-96BF-772493E3836F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B248269D-5EC9-42A4-93B8-8586F5EC112F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B248269D-5EC9-42A4-93B8-8586F5EC112F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B248269D-5EC9-42A4-93B8-8586F5EC112F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B248269D-5EC9-42A4-93B8-8586F5EC112F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{237DD776-9521-498F-9ABA-F45C17BA7757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{237DD776-9521-498F-9ABA-F45C17BA7757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{237DD776-9521-498F-9ABA-F45C17BA7757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{237DD776-9521-498F-9ABA-F45C17BA7757}.Release|Any CPU.Build.0 = Release|Any CPU
+		{932E4A1D-69E3-47C8-BA3A-74708A21254B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{932E4A1D-69E3-47C8-BA3A-74708A21254B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{932E4A1D-69E3-47C8-BA3A-74708A21254B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{932E4A1D-69E3-47C8-BA3A-74708A21254B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC86A18E-FDF5-4DC1-827F-C132C84BD8AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC86A18E-FDF5-4DC1-827F-C132C84BD8AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC86A18E-FDF5-4DC1-827F-C132C84BD8AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC86A18E-FDF5-4DC1-827F-C132C84BD8AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5E30FD73-3F1B-49D7-B1F9-8988662429DC} = {3474E9FD-AD15-411A-BC3A-CD296F451E9F}
@@ -218,5 +346,25 @@ Global
 		{F7E79CEE-DE9C-4A46-A193-C9FF7E6D9DFC} = {61252FCE-9AF3-4BD0-86B4-46794A689ECE}
 		{75309906-76E4-446A-A04C-4B4DA068195C} = {61252FCE-9AF3-4BD0-86B4-46794A689ECE}
 		{74B85308-0928-4587-83A9-4BE825CD79FA} = {61252FCE-9AF3-4BD0-86B4-46794A689ECE}
+		{210B9DFF-CA64-4719-9923-F29317E7BAFF} = {8784B2F2-98CF-4A17-92B2-94D371977B31}
+		{322E9E13-CB46-4B0E-98D1-3CFEE2F51662} = {8784B2F2-98CF-4A17-92B2-94D371977B31}
+		{C147B506-922C-43E3-9B88-A91D173469DC} = {8784B2F2-98CF-4A17-92B2-94D371977B31}
+		{BDCF622F-FEFA-471B-8673-0716084C435B} = {8784B2F2-98CF-4A17-92B2-94D371977B31}
+		{00F78E62-DD2A-4CE7-A283-C3E92455925C} = {8784B2F2-98CF-4A17-92B2-94D371977B31}
+		{2F23C9BC-74A4-4BA7-A23F-EAF84728A66A} = {0179581A-9D0C-4D15-A140-3C8A20BC8A4A}
+		{23FAC14B-F7A1-44F2-AFDE-D511D343BBB8} = {C6DF5032-8440-4EE7-A779-49A2FADAF0B9}
+		{F0199FA2-4D5B-4CD3-B7E7-61A9104E1A53} = {C6DF5032-8440-4EE7-A779-49A2FADAF0B9}
+		{64D107C7-349C-4CAF-8997-0B8D871CE81C} = {C6DF5032-8440-4EE7-A779-49A2FADAF0B9}
+		{AFF003E4-5023-46C6-8DF4-95F5C0607950} = {C6DF5032-8440-4EE7-A779-49A2FADAF0B9}
+		{3DE96810-2266-4288-9FE3-94732F38AA16} = {C6DF5032-8440-4EE7-A779-49A2FADAF0B9}
+		{750F026D-8326-4E2B-94CD-00A2FAB4B77C} = {0179581A-9D0C-4D15-A140-3C8A20BC8A4A}
+		{8E102FD1-22F7-48D7-B39F-76ECD4742F1F} = {0179581A-9D0C-4D15-A140-3C8A20BC8A4A}
+		{7DE5ADE8-E85E-4C0B-90DE-C912867FD2BF} = {0179581A-9D0C-4D15-A140-3C8A20BC8A4A}
+		{63E7DD35-77AC-47B9-8483-0A36E0DFC4FC} = {0179581A-9D0C-4D15-A140-3C8A20BC8A4A}
+		{69A405FF-1577-43DB-96BF-772493E3836F} = {C38A5675-4EFC-46A6-855D-655C0AA2DD09}
+		{B248269D-5EC9-42A4-93B8-8586F5EC112F} = {C38A5675-4EFC-46A6-855D-655C0AA2DD09}
+		{237DD776-9521-498F-9ABA-F45C17BA7757} = {C38A5675-4EFC-46A6-855D-655C0AA2DD09}
+		{932E4A1D-69E3-47C8-BA3A-74708A21254B} = {C38A5675-4EFC-46A6-855D-655C0AA2DD09}
+		{DC86A18E-FDF5-4DC1-827F-C132C84BD8AE} = {C38A5675-4EFC-46A6-855D-655C0AA2DD09}
 	EndGlobalSection
 EndGlobal

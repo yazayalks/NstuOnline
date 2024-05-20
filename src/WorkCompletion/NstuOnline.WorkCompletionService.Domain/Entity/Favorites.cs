@@ -1,0 +1,13 @@
+﻿using Common.Data.Entities;
+
+namespace NstuOnline.WorkCompletion.Domain.Entity;
+
+public class Favorites : DictionaryEntity
+{
+    public string Code { get; set; }
+
+    public Favorites(byte id, string code, string name) : base(id, name)
+    {
+        Code = code;
+    }
+}
