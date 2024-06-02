@@ -12,10 +12,5 @@ public class FlowConfiguration : IEntityTypeConfiguration<Flow>
         
         builder
             .HasKey(x => x.Id);
-
-        builder
-            .HasOne(x => x.Group)
-            .WithMany()
-            .HasForeignKey(x => x.GroupId);
     }
 }

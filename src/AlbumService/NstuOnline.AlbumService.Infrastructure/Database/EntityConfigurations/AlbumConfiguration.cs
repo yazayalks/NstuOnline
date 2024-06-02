@@ -26,5 +26,10 @@ public class AlbumConfiguration : IEntityTypeConfiguration<Album>
         builder
             .HasMany(x => x.Attachments)
             .WithOne();
+        
+        builder
+            .HasOne(x => x.User)
+            .WithMany()
+            .HasForeignKey(x => x.UserId);
     }
 }

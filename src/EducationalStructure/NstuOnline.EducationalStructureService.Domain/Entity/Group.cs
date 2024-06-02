@@ -16,4 +16,8 @@ public class Group : EntityBase
     
     public bool IsDeleted { get; set; }
     public Department Department { get; set; }
+    
+    public Guid? FlowId { get; set; }
+    
+    public Flow Flow { get; set; }
 }

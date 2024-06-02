@@ -5,9 +5,11 @@ namespace NstuOnline.EventService.Domain.Entity;
 public class Member : EntityBase
 {
     public Guid UserId { get; set; }
-    
+
+    public User User { get; set; }
+
     public byte MemberStatusId { get; set; }
     public MemberStatus MemberStatus { get; set; }
-    
+
     public ICollection<Event> Events { get; set; }
 }

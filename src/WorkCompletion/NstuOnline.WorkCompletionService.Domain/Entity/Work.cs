@@ -11,6 +11,6 @@ public class Work : ArchivableEntity
     public DateTime? Deadline { get; set; }
     
     public Guid SyllabusSubjectId { get; set; }
-
+    
     public List<Attachment> Attachments { get; set; }
 }

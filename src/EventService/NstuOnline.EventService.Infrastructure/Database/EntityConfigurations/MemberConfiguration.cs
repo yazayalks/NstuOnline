@@ -22,5 +22,10 @@ public class MemberConfiguration : IEntityTypeConfiguration<Member>
             .HasMany(x => x.Events)
             .WithMany(x => x.Members)
             .UsingEntity<EventMember>();
+        
+        builder
+            .HasOne(x => x.User)
+            .WithMany()
+            .HasForeignKey(x => x.UserId);
     }
 }

@@ -6,6 +6,6 @@ namespace NstuOnline.EducationalStructure.Domain.Entity;
 /// </summary>
 public class Flow : EntityBase
 {
-    public Guid GroupId { get; set; }
-    public Group Group { get; set; }
+    public string Name { get; set; }
+    public ICollection<Group> Groups { get; set; }
 }

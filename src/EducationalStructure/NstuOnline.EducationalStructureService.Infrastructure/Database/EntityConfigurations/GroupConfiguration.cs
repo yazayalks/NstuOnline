@@ -22,5 +22,10 @@ public class GroupConfiguration : IEntityTypeConfiguration<Group>
             .HasOne(x => x.Department)
             .WithMany()
             .HasForeignKey(x => x.DepartmentId);
+        
+        builder
+            .HasOne(x => x.Flow)
+            .WithMany(x => x.Groups)
+            .HasForeignKey(x => x.FlowId);
     }
 }
