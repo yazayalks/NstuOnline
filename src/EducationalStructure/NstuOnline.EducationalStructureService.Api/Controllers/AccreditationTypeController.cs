@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace NstuOnline.EducationalStructure.Api.Controllers;
 
 [ApiController]
-[Route("v1/accreditation-type")]
+[Route("v1/accreditation-types")]
 public class AccreditationTypeController : ControllerBase
 {
     [HttpGet("{id:guid}")]

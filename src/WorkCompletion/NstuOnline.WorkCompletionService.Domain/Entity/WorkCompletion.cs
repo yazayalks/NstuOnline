@@ -30,4 +30,6 @@ public class WorkCompletion : EntityBase
     public WorkCompletionResult Result { get; set; }
     
     public List<WorkCompletionHistory> Histories { get; set; }
+    
+    public string ExternalId { get; set; }
 }

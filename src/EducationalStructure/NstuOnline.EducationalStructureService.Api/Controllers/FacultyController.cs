@@ -3,7 +3,7 @@
 namespace NstuOnline.EducationalStructure.Api.Controllers;
 
 [ApiController]
-[Route("v1/faculty")]
+[Route("v1/faculties")]
 public class FacultyController : ControllerBase
 {
     [HttpGet]

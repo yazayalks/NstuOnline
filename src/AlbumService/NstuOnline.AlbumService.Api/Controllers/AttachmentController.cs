@@ -3,7 +3,7 @@
 namespace NstuOnline.AlbumService.Api.Controllers;
 
 [ApiController]
-[Route("v1/attachment")]
+[Route("v1/attachments")]
 public class AttachmentController : ControllerBase
 {
     [HttpGet("{id:guid}")]
@@ -11,19 +11,7 @@ public class AttachmentController : ControllerBase
     {
         return Ok();
     }
-    
-    [HttpGet("get-by-user-id/{id:guid}")]
-    public IActionResult GetByUserId(Guid id)
-    {
-        return Ok();
-    }
-    
-    [HttpGet("get-by-topic-id/{id:guid}")]
-    public IActionResult GetByTopicId(Guid id)
-    {
-        return Ok();
-    }
-    
+
     [HttpPost]
     public IActionResult Post()
     {

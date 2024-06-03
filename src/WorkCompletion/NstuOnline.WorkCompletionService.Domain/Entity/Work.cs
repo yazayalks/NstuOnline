@@ -13,4 +13,6 @@ public class Work : ArchivableEntity
     public Guid SyllabusSubjectId { get; set; }
     
     public List<Attachment> Attachments { get; set; }
+    
+    public string ExternalId { get; set; }
 }

@@ -3,7 +3,7 @@
 namespace NstuOnline.AlbumService.Api.Controllers;
 
 [ApiController]
-[Route("v1/album")]
+[Route("v1/albums")]
 public class AlbumController : ControllerBase
 {
     [HttpGet("{id:guid}")]
@@ -12,6 +12,12 @@ public class AlbumController : ControllerBase
         return Ok();
     }
     
+    [HttpPost("search")]
+    public IActionResult Search()
+    {
+        return Ok();
+    }
+
     [HttpGet]
     public IActionResult Get()
     {

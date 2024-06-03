@@ -10,4 +10,6 @@ public class Department : EntityBase
     
     public Guid FacultyId { get; set; }
     public Faculty Faculty { get; set; }
+    
+    public string ExternalId { get; set; }
 }

@@ -37,5 +37,13 @@ public class WorkCompletionConfiguration : IEntityTypeConfiguration<WorkCompleti
         builder
             .HasMany(x => x.Histories)
             .WithOne();
+        
+        builder
+            .Property(x => x.ExternalId)
+            .HasMaxLength(50);
+        
+        builder
+            .HasIndex(x => x.ExternalId)
+            .IsUnique();
     }
 }

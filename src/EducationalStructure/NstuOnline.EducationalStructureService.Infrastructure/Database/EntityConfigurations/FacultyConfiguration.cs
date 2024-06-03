@@ -30,5 +30,13 @@ public class FacultyConfiguration : IEntityTypeConfiguration<Faculty>
         builder
             .HasIndex(x => x.Code)
             .IsUnique();
+        
+        builder
+            .Property(x => x.ExternalId)
+            .HasMaxLength(50);
+        
+        builder
+            .HasIndex(x => x.ExternalId)
+            .IsUnique();
     }
 }

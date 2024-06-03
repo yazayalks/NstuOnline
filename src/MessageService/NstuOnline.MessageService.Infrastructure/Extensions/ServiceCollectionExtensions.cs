@@ -42,8 +42,9 @@ public static class ServiceCollectionExtensions
             .AddScoped<IMessageRepository, MessageRepository>()
             .AddScoped<IChatUserRepository, ChatUserRepository>()
             .AddScoped<IAttachmentRepository, AttachmentRepository>()
-            .AddScoped<IAttachmentTypeRepository, AttachmentTypeRepository>()
-            .AddScoped<IChatTypeRepository, ChatTypeRepository>();
+            .AddScoped<IChatTypeRepository, ChatTypeRepository>()
+            .AddScoped<IMessageTypeRepository, MessageTypeRepository>()
+            .AddScoped<IMessageStatusRepository, MessageStatusRepository>();
     }
 
     public static IServiceCollection AddOpenTelemetryReferences(this IServiceCollection services, string serviceName)

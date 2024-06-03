@@ -22,5 +22,13 @@ public class SyllabusSubjectConfiguration : IEntityTypeConfiguration<SyllabusSub
             .HasOne(x => x.Syllabus)
             .WithMany()
             .HasForeignKey(x => x.SyllabusId);
+        
+        builder
+            .Property(x => x.ExternalId)
+            .HasMaxLength(50);
+        
+        builder
+            .HasIndex(x => x.ExternalId)
+            .IsUnique();
     }
 }

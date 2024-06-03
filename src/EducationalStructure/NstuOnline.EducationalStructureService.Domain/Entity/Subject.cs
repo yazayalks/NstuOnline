@@ -8,5 +8,6 @@ public class Subject : EntityBase
 {
     public string Name { get; set; }
     
+    public string ExternalId { get; set; }
     //LIST TOPIC
 }

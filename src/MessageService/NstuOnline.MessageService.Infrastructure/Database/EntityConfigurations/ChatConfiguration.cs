@@ -21,5 +21,13 @@ public class ChatConfiguration : IEntityTypeConfiguration<Chat>
             .HasOne(x => x.ChatType)
             .WithMany()
             .HasForeignKey(x => x.ChatTypeId);
+        
+        builder
+            .Property(x => x.ExternalId)
+            .HasMaxLength(50);
+        
+        builder
+            .HasIndex(x => x.ExternalId)
+            .IsUnique();
     }
 }

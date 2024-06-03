@@ -12,9 +12,9 @@ public class Attachment : EntityBase
 
     public byte AttachmentTypeId { get; set; }
 
-    public AttachmentType AttachmentType { get; set; }
-
     //public ICollection<MessageAttachment> MessageAttachments { get; set; } = new List<MessageAttachment>();
 
     public ICollection<Message> Messages { get; set; }
+    
+    public string ExternalId { get; set; }
 }

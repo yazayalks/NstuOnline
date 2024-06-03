@@ -8,8 +8,6 @@ public class Attachment : EntityBase
 
     public byte AttachmentTypeId { get; set; }
 
-    public AttachmentType AttachmentType { get; set; }
-
     public ICollection<AttachmentUser> Users { get; set; }
     
     public ICollection<RecordAttachment> Records { get; set; }

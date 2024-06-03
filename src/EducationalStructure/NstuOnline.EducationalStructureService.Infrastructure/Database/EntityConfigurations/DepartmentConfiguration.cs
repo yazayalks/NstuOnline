@@ -26,5 +26,13 @@ public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
             .HasOne(x => x.Faculty)
             .WithMany()
             .HasForeignKey(x => x.FacultyId);
+        
+        builder
+            .Property(x => x.ExternalId)
+            .HasMaxLength(50);
+        
+        builder
+            .HasIndex(x => x.ExternalId)
+            .IsUnique();
     }
 }

@@ -3,7 +3,7 @@
 namespace NstuOnline.EducationalStructure.Api.Controllers;
 
 [ApiController]
-[Route("v1/group")]
+[Route("v1/groups")]
 public class GroupController : ControllerBase
 {
     [HttpGet("search")]

@@ -35,5 +35,13 @@ public class SpecializationConfiguration : IEntityTypeConfiguration<Specializati
             .HasOne(x => x.Department)
             .WithMany()
             .HasForeignKey(x => x.DepartmentId);
+        
+        builder
+            .Property(x => x.ExternalId)
+            .HasMaxLength(50);
+        
+        builder
+            .HasIndex(x => x.ExternalId)
+            .IsUnique();
     }
 }

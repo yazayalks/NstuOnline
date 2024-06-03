@@ -31,4 +31,6 @@ public class SyllabusSubject
     public byte LabHours { get; set; }
     
     public byte ConsultationHours { get; set; }
+    
+    public string ExternalId { get; set; }
 }

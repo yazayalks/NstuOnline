@@ -11,4 +11,6 @@ public class Student : EntityBase
     
     public Guid SyllabusId { get; set; }
     public Syllabus Syllabus { get; set; }
+    
+    public string ExternalId { get; set; }
 }

@@ -24,5 +24,13 @@ public class WorkConfiguration : IEntityTypeConfiguration<Work>
         builder
             .HasMany(x => x.Attachments)
             .WithOne();
+        
+        builder
+            .Property(x => x.ExternalId)
+            .HasMaxLength(50);
+        
+        builder
+            .HasIndex(x => x.ExternalId)
+            .IsUnique();
     }
 }

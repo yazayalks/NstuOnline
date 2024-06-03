@@ -12,5 +12,13 @@ public class AttachmentConfiguration : IEntityTypeConfiguration<Attachment>
 
         builder
             .HasKey(x => x.Id);
+        
+        builder
+            .Property(x => x.ExternalId)
+            .HasMaxLength(50);
+        
+        builder
+            .HasIndex(x => x.ExternalId)
+            .IsUnique();
     }
 }

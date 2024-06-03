@@ -36,4 +36,6 @@ public class Message : EntityBase
     public ICollection<Attachment> Attachments { get; set; }
     
     public ICollection<Message> Children { get; set; }
+    
+    public string ExternalId { get; set; }
 }

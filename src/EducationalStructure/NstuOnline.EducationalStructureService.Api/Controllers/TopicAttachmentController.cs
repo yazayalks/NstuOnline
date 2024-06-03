@@ -3,7 +3,7 @@
 namespace NstuOnline.EducationalStructure.Api.Controllers;
 
 [ApiController]
-[Route("v1/topic-attachment")]
+[Route("v1/topic-attachments")]
 public class TopicAttachmentController : ControllerBase
 {
     [HttpGet("get-by-topic/{id}")]

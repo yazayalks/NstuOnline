@@ -12,5 +12,13 @@ public class FlowConfiguration : IEntityTypeConfiguration<Flow>
         
         builder
             .HasKey(x => x.Id);
+        
+        builder
+            .Property(x => x.ExternalId)
+            .HasMaxLength(50);
+        
+        builder
+            .HasIndex(x => x.ExternalId)
+            .IsUnique();
     }
 }

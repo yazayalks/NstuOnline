@@ -27,5 +27,13 @@ public class TopicConfiguration : IEntityTypeConfiguration<Topic>
             .HasOne(x => x.Subject)
             .WithMany()
             .HasForeignKey(x => x.SubjectId);
+        
+        builder
+            .Property(x => x.ExternalId)
+            .HasMaxLength(50);
+        
+        builder
+            .HasIndex(x => x.ExternalId)
+            .IsUnique();
     }
 }

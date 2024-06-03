@@ -3,7 +3,7 @@
 namespace NstuOnline.EducationalStructure.Api.Controllers;
 
 [ApiController]
-[Route("v1/teacher-assignment")]
+[Route("v1/teacher-assignments")]
 public class TeachingAssignmentController : ControllerBase
 {
     [HttpGet]

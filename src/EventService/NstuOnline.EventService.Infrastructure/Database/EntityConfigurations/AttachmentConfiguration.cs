@@ -12,10 +12,5 @@ public class AttachmentConfiguration : IEntityTypeConfiguration<Attachment>
         
         builder
             .HasKey(x => x.Id);
-        
-        builder
-            .HasOne(x => x.AttachmentType)
-            .WithMany()
-            .HasForeignKey(x => x.AttachmentTypeId);
     }
 }

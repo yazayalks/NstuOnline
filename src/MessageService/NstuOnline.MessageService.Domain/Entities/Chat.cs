@@ -20,4 +20,6 @@ public class Chat : ArchivableEntity
     /// В рамках чего создан чат (дисциплина, беседа группы, лабораторная работа)
     /// </summary>
     public Guid? ParentId { get; set; } 
+    
+    public string ExternalId { get; set; }
 }

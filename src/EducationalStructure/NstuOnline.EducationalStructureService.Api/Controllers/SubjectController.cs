@@ -3,7 +3,7 @@
 namespace NstuOnline.EducationalStructure.Api.Controllers;
 
 [ApiController]
-[Route("v1/subject")]
+[Route("v1/subjects")]
 public class SubjectController : ControllerBase
 {
     [HttpGet("{id:guid}")]

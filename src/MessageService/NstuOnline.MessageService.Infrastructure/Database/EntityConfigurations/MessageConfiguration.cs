@@ -36,5 +36,13 @@ public class MessageConfiguration : IEntityTypeConfiguration<Message>
             .HasOne(x => x.MessageStatus)
             .WithMany()
             .HasForeignKey(x => x.MessageStatusId);
+        
+        builder
+            .Property(x => x.ExternalId)
+            .HasMaxLength(50);
+        
+        builder
+            .HasIndex(x => x.ExternalId)
+            .IsUnique();
     }
 }

@@ -33,7 +33,8 @@ public class FileTypeConfiguration : IEntityTypeConfiguration<FileType>
             new((byte)FileTypes.Image, "Изображение", "image"),
             new((byte)FileTypes.Video, "Видео", "video"),
             new((byte)FileTypes.Audio, "Аудио", "audio"),
-            new((byte)FileTypes.Document, "Документ", "document")
+            new((byte)FileTypes.Document, "Документ", "document"),
+            new((byte)FileTypes.AudioMessage, "Голосовое сообщение", "audio_message")
         };
     }
 }

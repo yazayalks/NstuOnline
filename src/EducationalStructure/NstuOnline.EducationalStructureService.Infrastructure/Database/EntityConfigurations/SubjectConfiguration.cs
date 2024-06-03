@@ -21,5 +21,13 @@ public class SubjectConfiguration : IEntityTypeConfiguration<Subject>
         builder
             .HasIndex(x => x.Name)
             .IsUnique();
+        
+        builder
+            .Property(x => x.ExternalId)
+            .HasMaxLength(50);
+        
+        builder
+            .HasIndex(x => x.ExternalId)
+            .IsUnique();
     }
 }

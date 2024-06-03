@@ -12,4 +12,6 @@ public class Specialization : EntityBase
     
     public Guid DepartmentId { get; set; }
     public Department Department { get; set; }
+    
+    public string ExternalId { get; set; }
 }

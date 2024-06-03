@@ -20,4 +20,6 @@ public class Group : EntityBase
     public Guid? FlowId { get; set; }
     
     public Flow Flow { get; set; }
+    
+    public string ExternalId { get; set; }
 }

@@ -27,5 +27,13 @@ public class GroupConfiguration : IEntityTypeConfiguration<Group>
             .HasOne(x => x.Flow)
             .WithMany(x => x.Groups)
             .HasForeignKey(x => x.FlowId);
+        
+        builder
+            .Property(x => x.ExternalId)
+            .HasMaxLength(50);
+        
+        builder
+            .HasIndex(x => x.ExternalId)
+            .IsUnique();
     }
 }

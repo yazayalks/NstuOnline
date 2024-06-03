@@ -3,7 +3,7 @@
 namespace NstuOnline.EducationalStructure.Api.Controllers;
 
 [ApiController]
-[Route("v1/syllabus-subject")]
+[Route("v1/syllabus-subjects")]
 public class SyllabusSubjectController : ControllerBase
 {
     [HttpGet]

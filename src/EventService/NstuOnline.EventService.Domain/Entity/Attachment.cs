@@ -8,7 +8,5 @@ public class Attachment : EntityBase
 
     public byte AttachmentTypeId { get; set; }
 
-    public AttachmentType AttachmentType { get; set; }
-    
     public ICollection<TopicAttachment> Topics { get; set; }
 }

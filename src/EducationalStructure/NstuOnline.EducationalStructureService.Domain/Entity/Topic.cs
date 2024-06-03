@@ -11,5 +11,7 @@ public class Topic : EntityBase
     
     public string Description { get; set; }
     
+    public string ExternalId { get; set; }
+    
     public ICollection<Attachment> Attachments { get; set; }
 }
