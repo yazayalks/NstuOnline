@@ -13,5 +13,5 @@ public class Topic : EntityBase
     
     public string ExternalId { get; set; }
     
-    public ICollection<Attachment> Attachments { get; set; }
+    public IEnumerable<TopicAttachment> Attachments { get; set; }
 }

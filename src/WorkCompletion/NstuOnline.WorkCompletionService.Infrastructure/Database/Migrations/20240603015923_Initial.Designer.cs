@@ -12,8 +12,8 @@ using NstuOnline.WorkCompletion.Infrastructure.Database;
 namespace NstuOnline.WorkCompletion.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(WorkCompletionContext))]
-    [Migration("20240526201043_NEWNEW2")]
-    partial class NEWNEW2
+    [Migration("20240603015923_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,10 @@ namespace NstuOnline.WorkCompletion.Infrastructure.Database.Migrations
                     b.Property<byte>("AttachmentTypeId")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<Guid>("FileId")
                         .HasColumnType("uuid");
 
@@ -42,40 +46,12 @@ namespace NstuOnline.WorkCompletion.Infrastructure.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AttachmentTypeId");
+                    b.HasIndex("ExternalId")
+                        .IsUnique();
 
                     b.HasIndex("WorkId");
 
                     b.ToTable("attachment", (string)null);
-                });
-
-            modelBuilder.Entity("NstuOnline.WorkCompletion.Domain.Entity.AttachmentType", b =>
-                {
-                    b.Property<byte>("Id")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Code")
-                        .IsUnique();
-
-                    b.ToTable("attachment_type", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = (byte)1,
-                            Code = "document",
-                            Name = "Документ"
-                        });
                 });
 
             modelBuilder.Entity("NstuOnline.WorkCompletion.Domain.Entity.Favorites", b =>
@@ -149,6 +125,10 @@ namespace NstuOnline.WorkCompletion.Infrastructure.Database.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)");
 
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -166,6 +146,9 @@ namespace NstuOnline.WorkCompletion.Infrastructure.Database.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ExternalId")
+                        .IsUnique();
 
                     b.ToTable("work", (string)null);
                 });
@@ -188,6 +171,10 @@ namespace NstuOnline.WorkCompletion.Infrastructure.Database.Migrations
                     b.Property<DateTime?>("Deadline")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<byte?>("FavoritesId")
                         .HasColumnType("smallint");
 
@@ -209,6 +196,9 @@ namespace NstuOnline.WorkCompletion.Infrastructure.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ChatStatusId");
+
+                    b.HasIndex("ExternalId")
+                        .IsUnique();
 
                     b.HasIndex("FavoritesId");
 
@@ -427,17 +417,9 @@ namespace NstuOnline.WorkCompletion.Infrastructure.Database.Migrations
 
             modelBuilder.Entity("NstuOnline.WorkCompletion.Domain.Entity.Attachment", b =>
                 {
-                    b.HasOne("NstuOnline.WorkCompletion.Domain.Entity.AttachmentType", "AttachmentType")
-                        .WithMany()
-                        .HasForeignKey("AttachmentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("NstuOnline.WorkCompletion.Domain.Entity.Work", null)
                         .WithMany("Attachments")
                         .HasForeignKey("WorkId");
-
-                    b.Navigation("AttachmentType");
                 });
 
             modelBuilder.Entity("NstuOnline.WorkCompletion.Domain.Entity.WorkCompletion", b =>

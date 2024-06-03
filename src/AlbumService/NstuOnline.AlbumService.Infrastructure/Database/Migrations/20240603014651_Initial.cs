@@ -12,6 +12,17 @@ namespace NstuOnline.AlbumService.Infrastructure.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "user",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_user", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "album",
                 columns: table => new
                 {
@@ -23,17 +34,12 @@ namespace NstuOnline.AlbumService.Infrastructure.Database.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_album", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "user",
-                columns: table => new
-                {
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_user", x => x.UserId);
+                    table.ForeignKey(
+                        name: "FK_album_user_UserId",
+                        column: x => x.UserId,
+                        principalTable: "user",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,8 +65,7 @@ namespace NstuOnline.AlbumService.Infrastructure.Database.Migrations
                 columns: table => new
                 {
                     AttachmentId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    AttachmentId1 = table.Column<Guid>(type: "uuid", nullable: true)
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,11 +77,17 @@ namespace NstuOnline.AlbumService.Infrastructure.Database.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_attachment_user_attachment_AttachmentId1",
-                        column: x => x.AttachmentId1,
-                        principalTable: "attachment",
-                        principalColumn: "Id");
+                        name: "FK_attachment_user_user_UserId",
+                        column: x => x.UserId,
+                        principalTable: "user",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_album_UserId",
+                table: "album",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_attachment_AlbumId",
@@ -84,9 +95,9 @@ namespace NstuOnline.AlbumService.Infrastructure.Database.Migrations
                 column: "AlbumId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_attachment_user_AttachmentId1",
+                name: "IX_attachment_user_UserId",
                 table: "attachment_user",
-                column: "AttachmentId1");
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -96,13 +107,13 @@ namespace NstuOnline.AlbumService.Infrastructure.Database.Migrations
                 name: "attachment_user");
 
             migrationBuilder.DropTable(
-                name: "user");
-
-            migrationBuilder.DropTable(
                 name: "attachment");
 
             migrationBuilder.DropTable(
                 name: "album");
+
+            migrationBuilder.DropTable(
+                name: "user");
         }
     }
 }

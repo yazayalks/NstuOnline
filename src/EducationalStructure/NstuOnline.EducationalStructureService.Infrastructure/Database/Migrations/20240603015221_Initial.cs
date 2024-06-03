@@ -25,16 +25,44 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "attachment",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    FileId = table.Column<Guid>(type: "uuid", nullable: false),
+                    AttachmentTypeId = table.Column<byte>(type: "smallint", nullable: false),
+                    ExternalId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_attachment", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "faculty",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    Code = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
+                    Code = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    ExternalId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_faculty", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "flow",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    ExternalId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_flow", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -69,7 +97,8 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
+                    Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    ExternalId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -82,7 +111,8 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    FacultyId = table.Column<Guid>(type: "uuid", nullable: false)
+                    FacultyId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ExternalId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -96,6 +126,33 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "topic",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SubjectId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false),
+                    ExternalId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    AttachmentId = table.Column<Guid>(type: "uuid", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_topic", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_topic_attachment_AttachmentId",
+                        column: x => x.AttachmentId,
+                        principalTable: "attachment",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_topic_subject_SubjectId",
+                        column: x => x.SubjectId,
+                        principalTable: "subject",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "group",
                 columns: table => new
                 {
@@ -103,7 +160,10 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     Code = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     StartDate = table.Column<DateOnly>(type: "date", nullable: false),
                     Semester = table.Column<byte>(type: "smallint", nullable: false),
-                    DepartmentId = table.Column<Guid>(type: "uuid", nullable: false)
+                    DepartmentId = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    FlowId = table.Column<Guid>(type: "uuid", nullable: true),
+                    ExternalId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -114,6 +174,11 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                         principalTable: "department",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_group_flow_FlowId",
+                        column: x => x.FlowId,
+                        principalTable: "flow",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -123,7 +188,8 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Code = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    DepartmentId = table.Column<Guid>(type: "uuid", nullable: false)
+                    DepartmentId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ExternalId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -156,19 +222,25 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "flow",
+                name: "topic_attachment",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    GroupId = table.Column<Guid>(type: "uuid", nullable: false)
+                    TopicId = table.Column<Guid>(type: "uuid", nullable: false),
+                    AttachmentId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_flow", x => x.Id);
+                    table.PrimaryKey("PK_topic_attachment", x => new { x.TopicId, x.AttachmentId });
                     table.ForeignKey(
-                        name: "FK_flow_group_GroupId",
-                        column: x => x.GroupId,
-                        principalTable: "group",
+                        name: "FK_topic_attachment_attachment_AttachmentId",
+                        column: x => x.AttachmentId,
+                        principalTable: "attachment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_topic_attachment_topic_TopicId",
+                        column: x => x.TopicId,
+                        principalTable: "topic",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -251,7 +323,8 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     GroupId = table.Column<Guid>(type: "uuid", nullable: false),
-                    SyllabusId = table.Column<Guid>(type: "uuid", nullable: false)
+                    SyllabusId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ExternalId = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -286,7 +359,8 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     LectureHours = table.Column<byte>(type: "smallint", nullable: false),
                     PractiseHours = table.Column<byte>(type: "smallint", nullable: false),
                     LabHours = table.Column<byte>(type: "smallint", nullable: false),
-                    ConsultationHours = table.Column<byte>(type: "smallint", nullable: false)
+                    ConsultationHours = table.Column<byte>(type: "smallint", nullable: false),
+                    ExternalId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -318,6 +392,18 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_attachment_ExternalId",
+                table: "attachment",
+                column: "ExternalId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_department_ExternalId",
+                table: "department",
+                column: "ExternalId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_department_FacultyId",
                 table: "department",
                 column: "FacultyId");
@@ -335,20 +421,38 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_faculty_ExternalId",
+                table: "faculty",
+                column: "ExternalId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_faculty_Name",
                 table: "faculty",
                 column: "Name",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_flow_GroupId",
+                name: "IX_flow_ExternalId",
                 table: "flow",
-                column: "GroupId");
+                column: "ExternalId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_group_DepartmentId",
                 table: "group",
                 column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_group_ExternalId",
+                table: "group",
+                column: "ExternalId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_group_FlowId",
+                table: "group",
+                column: "FlowId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_specialization_Code",
@@ -360,6 +464,12 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                 name: "IX_specialization_DepartmentId",
                 table: "specialization",
                 column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_specialization_ExternalId",
+                table: "specialization",
+                column: "ExternalId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_specialization_Name",
@@ -408,6 +518,12 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_subject_ExternalId",
+                table: "subject",
+                column: "ExternalId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_subject_Name",
                 table: "subject",
                 column: "Name",
@@ -434,6 +550,12 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                 column: "StudyLevelId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_syllabus_subject_ExternalId",
+                table: "syllabus_subject",
+                column: "ExternalId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_syllabus_subject_SyllabusId",
                 table: "syllabus_subject",
                 column: "SyllabusId");
@@ -458,14 +580,32 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                 name: "IX_teaching_assignment_TeacherId",
                 table: "teaching_assignment",
                 column: "TeacherId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_topic_AttachmentId",
+                table: "topic",
+                column: "AttachmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_topic_ExternalId",
+                table: "topic",
+                column: "ExternalId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_topic_SubjectId",
+                table: "topic",
+                column: "SubjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_topic_attachment_AttachmentId",
+                table: "topic_attachment",
+                column: "AttachmentId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "flow");
-
             migrationBuilder.DropTable(
                 name: "student");
 
@@ -476,16 +616,19 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                 name: "teaching_assignment");
 
             migrationBuilder.DropTable(
+                name: "topic_attachment");
+
+            migrationBuilder.DropTable(
                 name: "syllabus");
 
             migrationBuilder.DropTable(
                 name: "group");
 
             migrationBuilder.DropTable(
-                name: "subject");
+                name: "teacher");
 
             migrationBuilder.DropTable(
-                name: "teacher");
+                name: "topic");
 
             migrationBuilder.DropTable(
                 name: "accreditation_type");
@@ -498,6 +641,15 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "study_level");
+
+            migrationBuilder.DropTable(
+                name: "flow");
+
+            migrationBuilder.DropTable(
+                name: "attachment");
+
+            migrationBuilder.DropTable(
+                name: "subject");
 
             migrationBuilder.DropTable(
                 name: "department");

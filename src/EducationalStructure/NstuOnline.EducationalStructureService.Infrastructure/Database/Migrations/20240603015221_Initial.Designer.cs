@@ -12,8 +12,8 @@ using NstuOnline.EducationalStructure.Infrastructure.Database;
 namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(EducationalStructureContext))]
-    [Migration("20240519131716_NewMig")]
-    partial class NewMig
+    [Migration("20240603015221_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,49 +60,19 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     b.Property<byte>("AttachmentTypeId")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<Guid>("FileId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AttachmentTypeId");
-
-                    b.ToTable("attachment", (string)null);
-                });
-
-            modelBuilder.Entity("NstuOnline.EducationalStructure.Domain.Entity.AttachmentType", b =>
-                {
-                    b.Property<byte>("Id")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Code")
+                    b.HasIndex("ExternalId")
                         .IsUnique();
 
-                    b.ToTable("attachment_type", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = (byte)1,
-                            Code = "document",
-                            Name = "Документ"
-                        },
-                        new
-                        {
-                            Id = (byte)2,
-                            Code = "photo",
-                            Name = "Фото"
-                        });
+                    b.ToTable("attachment", (string)null);
                 });
 
             modelBuilder.Entity("NstuOnline.EducationalStructure.Domain.Entity.Department", b =>
@@ -110,6 +80,10 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<Guid>("FacultyId")
                         .HasColumnType("uuid");
@@ -120,6 +94,9 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ExternalId")
+                        .IsUnique();
 
                     b.HasIndex("FacultyId");
 
@@ -140,6 +117,10 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -148,6 +129,9 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.HasIndex("ExternalId")
                         .IsUnique();
 
                     b.HasIndex("Name")
@@ -162,12 +146,17 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("GroupId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GroupId");
+                    b.HasIndex("ExternalId")
+                        .IsUnique();
 
                     b.ToTable("flow", (string)null);
                 });
@@ -186,6 +175,13 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     b.Property<Guid>("DepartmentId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<Guid?>("FlowId")
+                        .HasColumnType("uuid");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -198,6 +194,11 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("ExternalId")
+                        .IsUnique();
+
+                    b.HasIndex("FlowId");
 
                     b.ToTable("group", (string)null);
                 });
@@ -216,6 +217,10 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     b.Property<Guid>("DepartmentId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -228,6 +233,9 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
 
                     b.HasIndex("DepartmentId");
 
+                    b.HasIndex("ExternalId")
+                        .IsUnique();
+
                     b.HasIndex("Name")
                         .IsUnique();
 
@@ -239,6 +247,9 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("ExternalId")
+                        .HasColumnType("text");
 
                     b.Property<Guid>("GroupId")
                         .HasColumnType("uuid");
@@ -322,12 +333,19 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ExternalId")
+                        .IsUnique();
 
                     b.HasIndex("Name")
                         .IsUnique();
@@ -377,6 +395,10 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     b.Property<byte>("ConsultationHours")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<byte>("LabHours")
                         .HasColumnType("smallint");
 
@@ -408,6 +430,9 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                         .HasColumnType("boolean");
 
                     b.HasKey("SubjectId", "SyllabusId");
+
+                    b.HasIndex("ExternalId")
+                        .IsUnique();
 
                     b.HasIndex("SyllabusId");
 
@@ -465,10 +490,17 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("AttachmentId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -479,6 +511,11 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.HasIndex("ExternalId")
+                        .IsUnique();
 
                     b.HasIndex("SubjectId");
 
@@ -493,27 +530,11 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     b.Property<Guid>("AttachmentId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("AttachmentsId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("TopicId", "AttachmentId");
 
                     b.HasIndex("AttachmentId");
 
-                    b.HasIndex("AttachmentsId");
-
                     b.ToTable("topic_attachment", (string)null);
-                });
-
-            modelBuilder.Entity("NstuOnline.EducationalStructure.Domain.Entity.Attachment", b =>
-                {
-                    b.HasOne("NstuOnline.EducationalStructure.Domain.Entity.AttachmentType", "AttachmentType")
-                        .WithMany()
-                        .HasForeignKey("AttachmentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AttachmentType");
                 });
 
             modelBuilder.Entity("NstuOnline.EducationalStructure.Domain.Entity.Department", b =>
@@ -527,17 +548,6 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     b.Navigation("Faculty");
                 });
 
-            modelBuilder.Entity("NstuOnline.EducationalStructure.Domain.Entity.Flow", b =>
-                {
-                    b.HasOne("NstuOnline.EducationalStructure.Domain.Entity.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Group");
-                });
-
             modelBuilder.Entity("NstuOnline.EducationalStructure.Domain.Entity.Group", b =>
                 {
                     b.HasOne("NstuOnline.EducationalStructure.Domain.Entity.Department", "Department")
@@ -546,7 +556,13 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("NstuOnline.EducationalStructure.Domain.Entity.Flow", "Flow")
+                        .WithMany("Groups")
+                        .HasForeignKey("FlowId");
+
                     b.Navigation("Department");
+
+                    b.Navigation("Flow");
                 });
 
             modelBuilder.Entity("NstuOnline.EducationalStructure.Domain.Entity.Specialization", b =>
@@ -673,6 +689,10 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
 
             modelBuilder.Entity("NstuOnline.EducationalStructure.Domain.Entity.Topic", b =>
                 {
+                    b.HasOne("NstuOnline.EducationalStructure.Domain.Entity.Attachment", null)
+                        .WithMany("Topics")
+                        .HasForeignKey("AttachmentId");
+
                     b.HasOne("NstuOnline.EducationalStructure.Domain.Entity.Subject", "Subject")
                         .WithMany()
                         .HasForeignKey("SubjectId")
@@ -690,14 +710,8 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NstuOnline.EducationalStructure.Domain.Entity.Attachment", null)
-                        .WithMany()
-                        .HasForeignKey("AttachmentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("NstuOnline.EducationalStructure.Domain.Entity.Topic", "Topic")
-                        .WithMany()
+                        .WithMany("Attachments")
                         .HasForeignKey("TopicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -705,6 +719,21 @@ namespace NstuOnline.EducationalStructure.Infrastructure.Database.Migrations
                     b.Navigation("Attachment");
 
                     b.Navigation("Topic");
+                });
+
+            modelBuilder.Entity("NstuOnline.EducationalStructure.Domain.Entity.Attachment", b =>
+                {
+                    b.Navigation("Topics");
+                });
+
+            modelBuilder.Entity("NstuOnline.EducationalStructure.Domain.Entity.Flow", b =>
+                {
+                    b.Navigation("Groups");
+                });
+
+            modelBuilder.Entity("NstuOnline.EducationalStructure.Domain.Entity.Topic", b =>
+                {
+                    b.Navigation("Attachments");
                 });
 #pragma warning restore 612, 618
         }

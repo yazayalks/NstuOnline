@@ -14,11 +14,6 @@ public class AttachmentConfiguration : IEntityTypeConfiguration<Attachment>
             .HasKey(x => x.Id);
         
         builder
-            .HasMany(x => x.Topics)
-            .WithMany(x => x.Attachments)
-            .UsingEntity<TopicAttachment>();
-        
-        builder
             .Property(x => x.ExternalId)
             .HasMaxLength(50);
         

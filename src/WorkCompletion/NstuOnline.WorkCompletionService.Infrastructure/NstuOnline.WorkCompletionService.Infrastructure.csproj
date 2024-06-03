@@ -33,4 +33,8 @@
       <ProjectReference Include="..\NstuOnline.WorkCompletionService.Domain\NstuOnline.WorkCompletionService.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Database\Migrations\" />
+    </ItemGroup>
+
 </Project>

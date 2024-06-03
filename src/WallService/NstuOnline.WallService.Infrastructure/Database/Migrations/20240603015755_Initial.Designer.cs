@@ -12,8 +12,8 @@ using NstuOnline.WallService.Infrastructure.Database;
 namespace NstuOnline.WallService.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(WallContext))]
-    [Migration("20240519191447_new")]
-    partial class @new
+    [Migration("20240603015755_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,44 +39,7 @@ namespace NstuOnline.WallService.Infrastructure.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AttachmentTypeId");
-
                     b.ToTable("attachment", (string)null);
-                });
-
-            modelBuilder.Entity("NstuOnline.WallService.Domain.Entity.AttachmentType", b =>
-                {
-                    b.Property<byte>("Id")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Code")
-                        .IsUnique();
-
-                    b.ToTable("attachment_type", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = (byte)1,
-                            Code = "document",
-                            Name = "Документ"
-                        },
-                        new
-                        {
-                            Id = (byte)2,
-                            Code = "photo",
-                            Name = "Фото"
-                        });
                 });
 
             modelBuilder.Entity("NstuOnline.WallService.Domain.Entity.AttachmentUser", b =>
@@ -165,17 +128,6 @@ namespace NstuOnline.WallService.Infrastructure.Database.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("user", (string)null);
-                });
-
-            modelBuilder.Entity("NstuOnline.WallService.Domain.Entity.Attachment", b =>
-                {
-                    b.HasOne("NstuOnline.WallService.Domain.Entity.AttachmentType", "AttachmentType")
-                        .WithMany()
-                        .HasForeignKey("AttachmentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AttachmentType");
                 });
 
             modelBuilder.Entity("NstuOnline.WallService.Domain.Entity.AttachmentUser", b =>

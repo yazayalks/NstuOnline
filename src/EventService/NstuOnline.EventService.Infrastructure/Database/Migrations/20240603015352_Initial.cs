@@ -14,16 +14,16 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "attachment_type",
+                name: "attachment",
                 columns: table => new
                 {
-                    Id = table.Column<byte>(type: "smallint", nullable: false),
-                    Code = table.Column<string>(type: "text", nullable: true),
-                    Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    FileId = table.Column<Guid>(type: "uuid", nullable: false),
+                    AttachmentTypeId = table.Column<byte>(type: "smallint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_attachment_type", x => x.Id);
+                    table.PrimaryKey("PK_attachment", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -74,25 +74,6 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_user", x => x.UserId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "attachment",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    FileId = table.Column<Guid>(type: "uuid", nullable: false),
-                    AttachmentTypeId = table.Column<byte>(type: "smallint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_attachment", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_attachment_attachment_type_AttachmentTypeId",
-                        column: x => x.AttachmentTypeId,
-                        principalTable: "attachment_type",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -147,6 +128,12 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                         principalTable: "member_status",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_member_user_UserId",
+                        column: x => x.UserId,
+                        principalTable: "user",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,8 +143,7 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     EventId = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false),
-                    EventId1 = table.Column<Guid>(type: "uuid", nullable: true)
+                    Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -168,11 +154,6 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                         principalTable: "event",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_topic_event_EventId1",
-                        column: x => x.EventId1,
-                        principalTable: "event",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -205,8 +186,7 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                 columns: table => new
                 {
                     TopicId = table.Column<Guid>(type: "uuid", nullable: false),
-                    AttachmentId = table.Column<Guid>(type: "uuid", nullable: false),
-                    AttachmentsId = table.Column<Guid>(type: "uuid", nullable: false)
+                    AttachmentId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -218,26 +198,11 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_topic_attachment_attachment_AttachmentsId",
-                        column: x => x.AttachmentsId,
-                        principalTable: "attachment",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_topic_attachment_topic_TopicId",
                         column: x => x.TopicId,
                         principalTable: "topic",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.InsertData(
-                table: "attachment_type",
-                columns: new[] { "Id", "Code", "Name" },
-                values: new object[,]
-                {
-                    { (byte)1, "document", "Документ" },
-                    { (byte)2, "photo", "Фото" }
                 });
 
             migrationBuilder.InsertData(
@@ -274,17 +239,6 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_attachment_AttachmentTypeId",
-                table: "attachment",
-                column: "AttachmentTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_attachment_type_Code",
-                table: "attachment_type",
-                column: "Code",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_event_EventStatusId",
                 table: "event",
                 column: "EventStatusId");
@@ -317,6 +271,11 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                 column: "MemberStatusId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_member_UserId",
+                table: "member",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_member_status_Code",
                 table: "member_status",
                 column: "Code",
@@ -328,19 +287,9 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                 column: "EventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_topic_EventId1",
-                table: "topic",
-                column: "EventId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_topic_attachment_AttachmentId",
                 table: "topic_attachment",
                 column: "AttachmentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_topic_attachment_AttachmentsId",
-                table: "topic_attachment",
-                column: "AttachmentsId");
         }
 
         /// <inheritdoc />
@@ -351,9 +300,6 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "topic_attachment");
-
-            migrationBuilder.DropTable(
-                name: "user");
 
             migrationBuilder.DropTable(
                 name: "member");
@@ -368,7 +314,7 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                 name: "member_status");
 
             migrationBuilder.DropTable(
-                name: "attachment_type");
+                name: "user");
 
             migrationBuilder.DropTable(
                 name: "event");

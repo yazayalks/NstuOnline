@@ -14,16 +14,17 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "attachment_type",
+                name: "attachment",
                 columns: table => new
                 {
-                    Id = table.Column<byte>(type: "smallint", nullable: false),
-                    Code = table.Column<string>(type: "text", nullable: true),
-                    Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    FileId = table.Column<Guid>(type: "uuid", nullable: false),
+                    AttachmentTypeId = table.Column<byte>(type: "smallint", nullable: false),
+                    ExternalId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_attachment_type", x => x.Id);
+                    table.PrimaryKey("PK_attachment", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,25 +78,6 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "attachment",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    FileId = table.Column<Guid>(type: "uuid", nullable: false),
-                    AttachmentTypeId = table.Column<byte>(type: "smallint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_attachment", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_attachment_attachment_type_AttachmentTypeId",
-                        column: x => x.AttachmentTypeId,
-                        principalTable: "attachment_type",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "chat",
                 columns: table => new
                 {
@@ -103,6 +85,7 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     ChatTypeId = table.Column<byte>(type: "smallint", nullable: false),
                     ParentId = table.Column<Guid>(type: "uuid", nullable: true),
+                    ExternalId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uuid", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -157,7 +140,8 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                     UpdatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     MessageStatusId = table.Column<byte>(type: "smallint", nullable: false),
-                    MessageTypeId = table.Column<byte>(type: "smallint", nullable: false)
+                    MessageTypeId = table.Column<byte>(type: "smallint", nullable: false),
+                    ExternalId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -225,16 +209,6 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "attachment_type",
-                columns: new[] { "Id", "Code", "Name" },
-                values: new object[,]
-                {
-                    { (byte)1, "Документ", "document" },
-                    { (byte)2, "Фото", "photo" },
-                    { (byte)3, "Голосовое", "voice" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "chat_type",
                 columns: new[] { "Id", "Code", "Name" },
                 values: new object[,]
@@ -269,20 +243,21 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_attachment_AttachmentTypeId",
+                name: "IX_attachment_ExternalId",
                 table: "attachment",
-                column: "AttachmentTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_attachment_type_Code",
-                table: "attachment_type",
-                column: "Code",
+                column: "ExternalId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_chat_ChatTypeId",
                 table: "chat",
                 column: "ChatTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_chat_ExternalId",
+                table: "chat",
+                column: "ExternalId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_chat_type_Code",
@@ -299,6 +274,12 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                 name: "IX_message_ChatId",
                 table: "message",
                 column: "ChatId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_message_ExternalId",
+                table: "message",
+                column: "ExternalId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_message_MessageStatusId",
@@ -357,9 +338,6 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "message");
-
-            migrationBuilder.DropTable(
-                name: "attachment_type");
 
             migrationBuilder.DropTable(
                 name: "chat");

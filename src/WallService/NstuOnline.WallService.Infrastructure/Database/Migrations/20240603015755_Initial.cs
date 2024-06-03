@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace NstuOnline.WallService.Infrastructure.Database.Migrations
 {
     /// <inheritdoc />
@@ -14,16 +12,16 @@ namespace NstuOnline.WallService.Infrastructure.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "attachment_type",
+                name: "attachment",
                 columns: table => new
                 {
-                    Id = table.Column<byte>(type: "smallint", nullable: false),
-                    Code = table.Column<string>(type: "text", nullable: true),
-                    Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    FileId = table.Column<Guid>(type: "uuid", nullable: false),
+                    AttachmentTypeId = table.Column<byte>(type: "smallint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_attachment_type", x => x.Id);
+                    table.PrimaryKey("PK_attachment", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -38,21 +36,26 @@ namespace NstuOnline.WallService.Infrastructure.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "attachment",
+                name: "attachment_user",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    FileId = table.Column<Guid>(type: "uuid", nullable: false),
-                    AttachmentTypeId = table.Column<byte>(type: "smallint", nullable: false)
+                    AttachmentId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_attachment", x => x.Id);
+                    table.PrimaryKey("PK_attachment_user", x => new { x.AttachmentId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_attachment_attachment_type_AttachmentTypeId",
-                        column: x => x.AttachmentTypeId,
-                        principalTable: "attachment_type",
+                        name: "FK_attachment_user_attachment_AttachmentId",
+                        column: x => x.AttachmentId,
+                        principalTable: "attachment",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_attachment_user_user_UserId",
+                        column: x => x.UserId,
+                        principalTable: "user",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -72,36 +75,6 @@ namespace NstuOnline.WallService.Infrastructure.Database.Migrations
                     table.PrimaryKey("PK_record", x => x.Id);
                     table.ForeignKey(
                         name: "FK_record_user_UserId",
-                        column: x => x.UserId,
-                        principalTable: "user",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "attachment_user",
-                columns: table => new
-                {
-                    AttachmentId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    AttachmentId1 = table.Column<Guid>(type: "uuid", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_attachment_user", x => new { x.AttachmentId, x.UserId });
-                    table.ForeignKey(
-                        name: "FK_attachment_user_attachment_AttachmentId",
-                        column: x => x.AttachmentId,
-                        principalTable: "attachment",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_attachment_user_attachment_AttachmentId1",
-                        column: x => x.AttachmentId1,
-                        principalTable: "attachment",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_attachment_user_user_UserId",
                         column: x => x.UserId,
                         principalTable: "user",
                         principalColumn: "UserId",
@@ -137,8 +110,7 @@ namespace NstuOnline.WallService.Infrastructure.Database.Migrations
                 columns: table => new
                 {
                     RecordId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    RecordId1 = table.Column<Guid>(type: "uuid", nullable: true)
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -150,42 +122,12 @@ namespace NstuOnline.WallService.Infrastructure.Database.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_record_user_record_RecordId1",
-                        column: x => x.RecordId1,
-                        principalTable: "record",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_record_user_user_UserId",
                         column: x => x.UserId,
                         principalTable: "user",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.InsertData(
-                table: "attachment_type",
-                columns: new[] { "Id", "Code", "Name" },
-                values: new object[,]
-                {
-                    { (byte)1, "document", "Документ" },
-                    { (byte)2, "photo", "Фото" }
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_attachment_AttachmentTypeId",
-                table: "attachment",
-                column: "AttachmentTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_attachment_type_Code",
-                table: "attachment_type",
-                column: "Code",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_attachment_user_AttachmentId1",
-                table: "attachment_user",
-                column: "AttachmentId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_attachment_user_UserId",
@@ -201,11 +143,6 @@ namespace NstuOnline.WallService.Infrastructure.Database.Migrations
                 name: "IX_record_attachment_AttachmentId",
                 table: "record_attachment",
                 column: "AttachmentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_record_user_RecordId1",
-                table: "record_user",
-                column: "RecordId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_record_user_UserId",
@@ -230,9 +167,6 @@ namespace NstuOnline.WallService.Infrastructure.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "record");
-
-            migrationBuilder.DropTable(
-                name: "attachment_type");
 
             migrationBuilder.DropTable(
                 name: "user");

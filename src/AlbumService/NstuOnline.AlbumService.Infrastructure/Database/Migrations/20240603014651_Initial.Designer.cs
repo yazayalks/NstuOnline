@@ -12,8 +12,8 @@ using NstuOnline.AlbumService.Infrastructure.Database;
 namespace NstuOnline.AlbumService.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(AlbumContext))]
-    [Migration("20240526210632_sgsdg")]
-    partial class sgsdg
+    [Migration("20240603014651_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

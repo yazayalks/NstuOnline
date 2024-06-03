@@ -15,7 +15,7 @@ public class TopicAttachmentConfiguration : IEntityTypeConfiguration<TopicAttach
 
         builder
             .HasOne(x => x.Topic)
-            .WithMany()
+            .WithMany(x => x.Attachments)
             .HasForeignKey(x => x.TopicId);
         
         builder

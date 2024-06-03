@@ -14,16 +14,16 @@ namespace NstuOnline.PortfolioService.Infrastructure.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "attachment_type",
+                name: "attachment",
                 columns: table => new
                 {
-                    Id = table.Column<byte>(type: "smallint", nullable: false),
-                    Code = table.Column<string>(type: "text", nullable: true),
-                    Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    FileId = table.Column<Guid>(type: "uuid", nullable: false),
+                    AttachmentTypeId = table.Column<byte>(type: "smallint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_attachment_type", x => x.Id);
+                    table.PrimaryKey("PK_attachment", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,25 +48,6 @@ namespace NstuOnline.PortfolioService.Infrastructure.Database.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_user", x => x.UserId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "attachment",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    FileId = table.Column<Guid>(type: "uuid", nullable: false),
-                    AttachmentTypeId = table.Column<byte>(type: "smallint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_attachment", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_attachment_attachment_type_AttachmentTypeId",
-                        column: x => x.AttachmentTypeId,
-                        principalTable: "attachment_type",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -95,8 +76,7 @@ namespace NstuOnline.PortfolioService.Infrastructure.Database.Migrations
                 columns: table => new
                 {
                     PortfolioId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    PortfolioId1 = table.Column<Guid>(type: "uuid", nullable: true)
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -108,10 +88,11 @@ namespace NstuOnline.PortfolioService.Infrastructure.Database.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_portfolio_user_portfolio_PortfolioId1",
-                        column: x => x.PortfolioId1,
-                        principalTable: "portfolio",
-                        principalColumn: "Id");
+                        name: "FK_portfolio_user_user_UserId",
+                        column: x => x.UserId,
+                        principalTable: "user",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -121,8 +102,7 @@ namespace NstuOnline.PortfolioService.Infrastructure.Database.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     PortfolioId = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false),
-                    PortfolioId1 = table.Column<Guid>(type: "uuid", nullable: true)
+                    Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -133,11 +113,6 @@ namespace NstuOnline.PortfolioService.Infrastructure.Database.Migrations
                         principalTable: "portfolio",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_topic_portfolio_PortfolioId1",
-                        column: x => x.PortfolioId1,
-                        principalTable: "portfolio",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -145,8 +120,7 @@ namespace NstuOnline.PortfolioService.Infrastructure.Database.Migrations
                 columns: table => new
                 {
                     TopicId = table.Column<Guid>(type: "uuid", nullable: false),
-                    AttachmentId = table.Column<Guid>(type: "uuid", nullable: false),
-                    AttachmentsId = table.Column<Guid>(type: "uuid", nullable: false)
+                    AttachmentId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -154,12 +128,6 @@ namespace NstuOnline.PortfolioService.Infrastructure.Database.Migrations
                     table.ForeignKey(
                         name: "FK_topic_attachment_attachment_AttachmentId",
                         column: x => x.AttachmentId,
-                        principalTable: "attachment",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_topic_attachment_attachment_AttachmentsId",
-                        column: x => x.AttachmentsId,
                         principalTable: "attachment",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -172,15 +140,6 @@ namespace NstuOnline.PortfolioService.Infrastructure.Database.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "attachment_type",
-                columns: new[] { "Id", "Code", "Name" },
-                values: new object[,]
-                {
-                    { (byte)1, "document", "Документ" },
-                    { (byte)2, "photo", "Фото" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "portfolio_type",
                 columns: new[] { "Id", "Code", "Name" },
                 values: new object[,]
@@ -188,17 +147,6 @@ namespace NstuOnline.PortfolioService.Infrastructure.Database.Migrations
                     { (byte)1, "educational", "Учебное" },
                     { (byte)2, "personal", "Личное" }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_attachment_AttachmentTypeId",
-                table: "attachment",
-                column: "AttachmentTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_attachment_type_Code",
-                table: "attachment_type",
-                column: "Code",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_portfolio_PortfolioTypeId",
@@ -212,9 +160,9 @@ namespace NstuOnline.PortfolioService.Infrastructure.Database.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_portfolio_user_PortfolioId1",
+                name: "IX_portfolio_user_UserId",
                 table: "portfolio_user",
-                column: "PortfolioId1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_topic_PortfolioId",
@@ -222,19 +170,9 @@ namespace NstuOnline.PortfolioService.Infrastructure.Database.Migrations
                 column: "PortfolioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_topic_PortfolioId1",
-                table: "topic",
-                column: "PortfolioId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_topic_attachment_AttachmentId",
                 table: "topic_attachment",
                 column: "AttachmentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_topic_attachment_AttachmentsId",
-                table: "topic_attachment",
-                column: "AttachmentsId");
         }
 
         /// <inheritdoc />
@@ -254,9 +192,6 @@ namespace NstuOnline.PortfolioService.Infrastructure.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "topic");
-
-            migrationBuilder.DropTable(
-                name: "attachment_type");
 
             migrationBuilder.DropTable(
                 name: "portfolio");

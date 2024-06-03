@@ -12,8 +12,8 @@ using NstuOnline.EventService.Infrastructure.Database;
 namespace NstuOnline.EventService.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(EventContext))]
-    [Migration("20240519131533_NewMig")]
-    partial class NewMig
+    [Migration("20240603015352_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,44 +39,7 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AttachmentTypeId");
-
                     b.ToTable("attachment", (string)null);
-                });
-
-            modelBuilder.Entity("NstuOnline.EventService.Domain.Entity.AttachmentType", b =>
-                {
-                    b.Property<byte>("Id")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Code")
-                        .IsUnique();
-
-                    b.ToTable("attachment_type", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = (byte)1,
-                            Code = "document",
-                            Name = "Документ"
-                        },
-                        new
-                        {
-                            Id = (byte)2,
-                            Code = "photo",
-                            Name = "Фото"
-                        });
                 });
 
             modelBuilder.Entity("NstuOnline.EventService.Domain.Entity.Event", b =>
@@ -262,6 +225,8 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
 
                     b.HasIndex("MemberStatusId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("member", (string)null);
                 });
 
@@ -326,9 +291,6 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                     b.Property<Guid>("EventId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("EventId1")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -337,8 +299,6 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
-
-                    b.HasIndex("EventId1");
 
                     b.ToTable("topic", (string)null);
                 });
@@ -351,14 +311,9 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                     b.Property<Guid>("AttachmentId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("AttachmentsId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("TopicId", "AttachmentId");
 
                     b.HasIndex("AttachmentId");
-
-                    b.HasIndex("AttachmentsId");
 
                     b.ToTable("topic_attachment", (string)null);
                 });
@@ -372,17 +327,6 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("user", (string)null);
-                });
-
-            modelBuilder.Entity("NstuOnline.EventService.Domain.Entity.Attachment", b =>
-                {
-                    b.HasOne("NstuOnline.EventService.Domain.Entity.AttachmentType", "AttachmentType")
-                        .WithMany()
-                        .HasForeignKey("AttachmentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AttachmentType");
                 });
 
             modelBuilder.Entity("NstuOnline.EventService.Domain.Entity.Event", b =>
@@ -431,20 +375,24 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("NstuOnline.EventService.Domain.Entity.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("MemberStatus");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("NstuOnline.EventService.Domain.Entity.Topic", b =>
                 {
                     b.HasOne("NstuOnline.EventService.Domain.Entity.Event", "Event")
-                        .WithMany()
+                        .WithMany("Topics")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("NstuOnline.EventService.Domain.Entity.Event", null)
-                        .WithMany("Topics")
-                        .HasForeignKey("EventId1");
 
                     b.Navigation("Event");
                 });
@@ -452,19 +400,13 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
             modelBuilder.Entity("NstuOnline.EventService.Domain.Entity.TopicAttachment", b =>
                 {
                     b.HasOne("NstuOnline.EventService.Domain.Entity.Attachment", "Attachment")
-                        .WithMany()
+                        .WithMany("Topics")
                         .HasForeignKey("AttachmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NstuOnline.EventService.Domain.Entity.Attachment", null)
-                        .WithMany()
-                        .HasForeignKey("AttachmentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("NstuOnline.EventService.Domain.Entity.Topic", "Topic")
-                        .WithMany()
+                        .WithMany("Attachments")
                         .HasForeignKey("TopicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -474,9 +416,19 @@ namespace NstuOnline.EventService.Infrastructure.Database.Migrations
                     b.Navigation("Topic");
                 });
 
+            modelBuilder.Entity("NstuOnline.EventService.Domain.Entity.Attachment", b =>
+                {
+                    b.Navigation("Topics");
+                });
+
             modelBuilder.Entity("NstuOnline.EventService.Domain.Entity.Event", b =>
                 {
                     b.Navigation("Topics");
+                });
+
+            modelBuilder.Entity("NstuOnline.EventService.Domain.Entity.Topic", b =>
+                {
+                    b.Navigation("Attachments");
                 });
 #pragma warning restore 612, 618
         }

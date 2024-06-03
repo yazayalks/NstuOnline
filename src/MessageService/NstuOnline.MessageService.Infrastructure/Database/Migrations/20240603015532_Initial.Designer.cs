@@ -12,7 +12,7 @@ using NstuOnline.MessageService.Infrastructure.Database;
 namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(MessageContext))]
-    [Migration("20240526204434_Initial")]
+    [Migration("20240603015532_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -34,55 +34,19 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                     b.Property<byte>("AttachmentTypeId")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<Guid>("FileId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AttachmentTypeId");
-
-                    b.ToTable("attachment", (string)null);
-                });
-
-            modelBuilder.Entity("NstuOnline.MessageService.Domain.Entities.AttachmentType", b =>
-                {
-                    b.Property<byte>("Id")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Code")
+                    b.HasIndex("ExternalId")
                         .IsUnique();
 
-                    b.ToTable("attachment_type", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = (byte)1,
-                            Code = "Документ",
-                            Name = "document"
-                        },
-                        new
-                        {
-                            Id = (byte)2,
-                            Code = "Фото",
-                            Name = "photo"
-                        },
-                        new
-                        {
-                            Id = (byte)3,
-                            Code = "Голосовое",
-                            Name = "voice"
-                        });
+                    b.ToTable("attachment", (string)null);
                 });
 
             modelBuilder.Entity("NstuOnline.MessageService.Domain.Entities.Chat", b =>
@@ -99,6 +63,10 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -119,6 +87,9 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ChatTypeId");
+
+                    b.HasIndex("ExternalId")
+                        .IsUnique();
 
                     b.ToTable("chat", (string)null);
                 });
@@ -209,6 +180,10 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("ExternalId")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -234,6 +209,9 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ChatId");
+
+                    b.HasIndex("ExternalId")
+                        .IsUnique();
 
                     b.HasIndex("MessageStatusId");
 
@@ -363,17 +341,6 @@ namespace NstuOnline.MessageService.Infrastructure.Database.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("user", (string)null);
-                });
-
-            modelBuilder.Entity("NstuOnline.MessageService.Domain.Entities.Attachment", b =>
-                {
-                    b.HasOne("NstuOnline.MessageService.Domain.Entities.AttachmentType", "AttachmentType")
-                        .WithMany()
-                        .HasForeignKey("AttachmentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AttachmentType");
                 });
 
             modelBuilder.Entity("NstuOnline.MessageService.Domain.Entities.Chat", b =>
