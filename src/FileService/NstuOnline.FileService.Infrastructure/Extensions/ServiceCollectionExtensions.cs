@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using Minio.AspNetCore;
 using Npgsql;
 using NstuOnline.FileService.Domain.Contracts;
@@ -9,7 +9,7 @@ using NstuOnline.FileService.Infrastructure.Database.Repositories;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace NstuOnline.MessageService.Infrastructure.Extensions;
+namespace NstuOnline.FileService.Infrastructure.Extensions;
 
 public static class ServiceCollectionExtensions
 {
@@ -47,7 +47,6 @@ public static class ServiceCollectionExtensions
                 .AddSqlClientInstrumentation()
                 .AddNpgsql()
                 .AddOtlpExporter()
-                //.AddConsoleExporter()
             );
 
         return services;

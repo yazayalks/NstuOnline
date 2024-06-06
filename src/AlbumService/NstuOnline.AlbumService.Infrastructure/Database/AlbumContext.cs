@@ -2,7 +2,7 @@
 
 namespace NstuOnline.AlbumService.Infrastructure.Database;
 
-public class AlbumContext : DbContext
+public sealed class AlbumContext : DbContext
 {
     public AlbumContext(DbContextOptions<AlbumContext> options)
         : base(options)

@@ -1,0 +1,12 @@
+﻿services:
+  nstuonline.bff.api:
+    image: nstuonline.bff.api
+    build:
+      context: .
+      dockerfile: BFF/NstuOnline.BFF.Api/Dockerfile
+
+  nstuonline.eventservice.api:
+    image: nstuonline.eventservice.api
+    build:
+      context: .
+      dockerfile: EventService/NstuOnline.EventService.Api/Dockerfile

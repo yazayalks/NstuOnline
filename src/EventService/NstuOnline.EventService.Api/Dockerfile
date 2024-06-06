@@ -7,6 +7,11 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["EventService/NstuOnline.EventService.Api/NstuOnline.EventService.Api.csproj", "EventService/NstuOnline.EventService.Api/"]
+COPY ["EventService/NstuOnline.EventService.Application/NstuOnline.EventService.Application.csproj", "EventService/NstuOnline.EventService.Application/"]
+COPY ["Common/Common.Models/Common.Models.csproj", "Common/Common.Models/"]
+COPY ["EventService/NstuOnline.EventService.Domain/NstuOnline.EventService.Domain.csproj", "EventService/NstuOnline.EventService.Domain/"]
+COPY ["Common/Common.Data/Common.Data.csproj", "Common/Common.Data/"]
+COPY ["EventService/NstuOnline.EventService.Infrastructure/NstuOnline.EventService.Infrastructure.csproj", "EventService/NstuOnline.EventService.Infrastructure/"]
 RUN dotnet restore "EventService/NstuOnline.EventService.Api/NstuOnline.EventService.Api.csproj"
 COPY . .
 WORKDIR "/src/EventService/NstuOnline.EventService.Api"

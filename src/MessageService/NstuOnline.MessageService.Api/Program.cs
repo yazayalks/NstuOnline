@@ -2,7 +2,6 @@ using NstuOnline.MessageService.Application.Extensions;
 using NstuOnline.MessageService.Infrastructure.Database;
 using NstuOnline.MessageService.Infrastructure.Extensions;
 using Serilog;
-using Serilog.Sinks.Grafana.Loki;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,11 +24,9 @@ await builder.Services.MigrateDatabase<MessageContext>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

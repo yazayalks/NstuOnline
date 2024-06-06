@@ -4,6 +4,143 @@ networks:
   loki:
 
 services:
+  bff:
+    image: nstuonline.bff.api
+    depends_on:
+      message-service:
+        condition: service_started
+      educational-structure-service:
+        condition: service_started
+      album-service:
+        condition: service_started
+      event-service:
+        condition: service_started
+      file-service:
+        condition: service_started
+      portfolio-service:
+        condition: service_started
+      wall-service:
+        condition: service_started
+      work-completion-service:
+        condition: service_started
+      integration-service:
+        condition: service_started
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    deploy:
+      replicas: 1
+    build:
+      context: .
+      dockerfile: ../src/BFF/NstuOnline.BFF.Api/Dockerfile
+      
+  message-service:
+    image: nstuonline.messageservice.api
+    ports:
+      - 80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    deploy:
+      replicas: 2
+    build:
+      context: .
+      dockerfile: ../src/MessageService/NstuOnline.MessageService.Api/Dockerfile
+  
+  educational-structure-service:
+    image: nstuonline.educationalstructureservice.api
+    ports:
+      - 80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    deploy:
+      replicas: 1
+    build:
+      context: .
+      dockerfile: ../src/EducationalStructure/NstuOnline.EducationalStructure.Api/Dockerfile
+      
+  album-service:
+    image: nstuonline.albumservice.api
+    ports:
+      - 80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    deploy:
+      replicas: 1
+    build:
+      context: .
+      dockerfile: ../src/AlbumService/NstuOnline.AlbumService.Api/Dockerfile
+  
+  event-service:
+    image: nstuonline.eventservice.api
+    ports:
+      - 80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    deploy:
+      replicas: 1
+    build:
+      context: .
+      dockerfile: ../src/EventService/NstuOnline.EventService.Api/Dockerfile
+  
+  file-service:
+    image: nstuonline.fileservice.api
+    ports:
+      - 80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    deploy:
+      replicas: 1
+    build:
+      context: .
+      dockerfile: ../src/FileService/NstuOnline.FileService.Api/Dockerfile
+      
+  portfolio-service:
+    image: nstuonline.portfolioservice.api
+    ports:
+      - 80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    deploy:
+      replicas: 1
+    build:
+      context: .
+      dockerfile: ../src/PortfolioService/NstuOnline.PortfolioService.Api/Dockerfile
+  
+  wall-service:
+    image: nstuonline.wallservice.api
+    ports:
+      - 80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    deploy:
+      replicas: 1
+    build:
+      context: .
+      dockerfile: ../src/WallService/NstuOnline.WallService.Api/Dockerfile
+      
+  work-completion-service:
+    image: nstuonline.workcompletionservice.api
+    ports:
+      - 80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    deploy:
+      replicas: 1
+    build:
+      context: .
+      dockerfile: ../src/WorkCompletionService/NstuOnline.WorkCompletionService.Api/Dockerfile
+  
+  integration-service:
+    image: nstuonline.integrationservice.api
+    ports:
+      - 80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    deploy:
+      replicas: 1
+    build:
+      context: .
+      dockerfile: ../src/IntegrationService/NstuOnline.IntegrationService.Api/Dockerfile
+      
   loki:
     image: grafana/loki:latest
     ports:
@@ -102,3 +239,5 @@ services:
       - "9090:9090"
     networks:
       - loki
+  
+  

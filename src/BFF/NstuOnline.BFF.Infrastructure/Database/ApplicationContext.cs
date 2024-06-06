@@ -9,7 +9,23 @@ public class ApplicationContext : IdentityDbContext<User>
     public ApplicationContext(DbContextOptions<ApplicationContext> options)
         : base(options)
     {
+        
     }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
+    }
+    
+    // public ApplicationContext(DbContextOptions<ApplicationContext> options)
+    //     : base(options)
+    // {
+    // }
+    //
+    // protected override void OnModelCreating(ModelBuilder modelBuilder)
+    // {
+    //     modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
+    // }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

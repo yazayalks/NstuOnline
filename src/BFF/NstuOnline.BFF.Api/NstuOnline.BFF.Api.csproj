@@ -37,4 +37,10 @@
       <ProjectReference Include="..\NstuOnline.BFF.Infrastructure\NstuOnline.BFF.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
 </Project>

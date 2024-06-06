@@ -34,4 +34,10 @@ public class FileController : ControllerBase
     {
         return _mediator.Send(request, cancellationToken);
     }
+    
+    [HttpDelete("{id:guid}")]
+    public IActionResult Delete()
+    {
+        return Ok();
+    }
 }
