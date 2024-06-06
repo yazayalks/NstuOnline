@@ -2,6 +2,8 @@
 using Common.Models;
 using MediatR;
 using NstuOnline.MessageService.Domain.Contracts;
+using NstuOnline.MessageService.Domain.Enums;
+using NstuOnline.MessageService.Domain.Exceptions;
 using NstuOnline.MessageService.Domain.Models;
 
 namespace NstuOnline.MessageService.Application.Features.Messages.Search;
@@ -13,6 +15,8 @@ public record SearchMessageRequest : PagedRequest, IRequest<PagedList<SearchMess
     public Guid UserId { get; init; }
     
     public Guid ChatId { get; init; }
+    
+    public bool? IsDeleted { get; init; }
 }
 
 public class SearchMessageHandler : IRequestHandler<SearchMessageRequest, PagedList<SearchMessageResponse>>
@@ -34,7 +38,7 @@ public class SearchMessageHandler : IRequestHandler<SearchMessageRequest, PagedL
 
         if (chatUser is null)
         {
-            //TODO chatUser is exist
+            throw new ChatUserNotFoundException(request.UserId, request.ChatId, ExceptionEntityTypes.ChatUser);
         }
 
         var searchMessageCriteria = _mapper.Map<SearchMessageCriteria>(request);

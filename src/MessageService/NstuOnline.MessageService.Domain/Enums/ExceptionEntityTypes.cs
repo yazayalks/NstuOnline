@@ -2,5 +2,10 @@
 
 public enum ExceptionEntityTypes : byte
 {
-    AttachmentType = 1
+    AttachmentType = 1,
+    Message,
+    MessageStatus,
+    ChatUser,
+    Chat,
+    ChatType
 }

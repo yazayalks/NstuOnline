@@ -24,6 +24,11 @@ public class MessageRepository : RepositoryBase<Message, Guid>, IMessageReposito
         {
             query = query.Where(x => EF.Functions.ILike(x.Text, $"%{criteria.Keyword}%"));
         }
+        
+        if (criteria.IsDeleted.HasValue)
+        {
+            query = query.Where(x => x.IsDeleted == criteria.IsDeleted.Value);
+        }
 
         return await query.ToSearchResult(
             criteria.SortExpressions,

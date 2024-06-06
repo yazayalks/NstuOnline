@@ -30,6 +30,11 @@ public class ChatRepository : RepositoryBase<Chat, Guid>, IChatRepository
         {
             query = query.Where(x => x.ChatTypeId == criteria.ChatTypeId.Value);
         }
+        
+        if (!string.IsNullOrWhiteSpace(criteria.Keyword))
+        {
+            query = query.Where(x => EF.Functions.ILike(x.Name, $"%{criteria.Keyword}%"));
+        }
 
         return await query.ToSearchResult(
             criteria.SortExpressions,

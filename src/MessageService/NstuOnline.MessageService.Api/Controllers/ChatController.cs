@@ -2,7 +2,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using NstuOnline.MessageService.Application.Features.Chats.Create;
+using NstuOnline.MessageService.Application.Features.Chats.Delete;
 using NstuOnline.MessageService.Application.Features.Chats.Search;
+using NstuOnline.MessageService.Application.Features.Chats.Update;
 
 namespace NstuOnline.MessageService.Api.Controllers;
 
@@ -31,5 +33,17 @@ public class ChatController : ControllerBase
         CancellationToken cancellationToken)
     {
         return _mediator.Send(request, cancellationToken);
+    }
+
+    [HttpPut]
+    public Task<Guid> Update([FromBody] UpdateChatRequest request)
+    {
+        return _mediator.Send(request);
+    }
+
+    [HttpDelete("{id:guid}")]
+    public Task Delete([FromRoute] Guid id, CancellationToken cancellationToken)
+    {
+        return _mediator.Send(new DeleteChatRequest(id), cancellationToken);
     }
 }

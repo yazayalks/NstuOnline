@@ -8,4 +8,6 @@ public record SearchMessageCriteria : PagedRequest
     public string Keyword { get; set; }
     
     public Guid ChatId { get; set; }
+    
+    public bool? IsDeleted { get; init; }
 }
